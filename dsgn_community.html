@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【熱血フェス版】AI×地域告知LP実践 & 課題抽出ワーク | 令和8年度 石川県連 研修事業</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Impact&family=Montserrat:wght@800;900&family=Noto+Sans+JP:wght@500;700;900&display=swap">
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: #161c2e;
+            --text-light: #ffffff;
+            --text-muted: #a0aec0;
+            --primary: #ff4500;
+            --primary-gradient: linear-gradient(135deg, #ff4500 0%, #ffaa00 100%);
+            --accent-cyan: #00f2fe;
+            --max-width: 1100px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Top Bar Announcement */
+        .top-banner {
+            background: var(--primary-gradient);
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 900;
+            text-align: center;
+            padding: 6px 10px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Header Navigation */
+        header {
+            position: absolute;
+            top: 32px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+        }
+
+        nav a {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-light);
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #ffaa00;
+        }
+
+        .btn-nav-register {
+            background: var(--primary-gradient);
+            color: #000 !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 900;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 20px 140px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(11,15,25,0.6) 0%, rgba(11,15,25,1) 100%), 
+                        url('https://selected-ryokan.com/wp-content/uploads/2019/02/0bad3d28cdb13a9b8a9719ce6d191b6b.jpg') center/cover no-repeat;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 0.85rem;
+            color: #000;
+            background: #fff;
+            padding: 6px 16px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            transform: rotate(-1.5deg);
+            box-shadow: 4px 4px 0px var(--primary);
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-title span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            font-size: clamp(1.5rem, 4vw, 2.8rem);
+            margin-top: 10px;
+        }
+
+        .hero-meta {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            letter-spacing: 0.05em;
+            margin-bottom: 30px;
+        }
+
+        .hero-desc {
+            max-width: 750px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-main {
+            background: var(--primary-gradient);
+            color: #000;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 25px rgba(255, 69, 0, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05) rotate(-1deg);
+            box-shadow: 0 15px 30px rgba(255, 69, 0, 0.6);
+        }
+
+        .btn-sub {
+            background: transparent;
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            border: 2px solid #fff;
+            transition: background 0.2s;
+        }
+
+        .btn-sub:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Section Global */
+        section {
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .section-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 0.9rem;
+            color: var(--primary);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        /* Concept Section */
+        #concept {
+            background: #111625;
+            clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+            padding: 140px 20px;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .concept-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        .concept-lead {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 900;
+            line-height: 1.4;
+            border-left: 6px solid var(--primary);
+            padding-left: 20px;
+        }
+
+        .concept-text {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-dark);
+            border: 2px solid #232d45;
+            padding: 40px 30px;
+            border-radius: 12px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+        }
+
+        .feature-num {
+            font-family: 'Impact', sans-serif;
+            font-size: 3rem;
+            color: rgba(255, 69, 0, 0.2);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Program Section */
+        .program-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .program-card { grid-template-columns: 1fr; padding: 30px; gap: 20px; }
+        }
+
+        .program-badge {
+            background: var(--primary-gradient);
+            color: #000;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-weight: 900;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .program-time {
+            font-family: 'Impact', sans-serif;
+            font-size: 2.2rem;
+            color: var(--accent-cyan);
+            line-height: 1.1;
+        }
+
+        .program-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .program-desc {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .program-tags {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .program-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 50px;
+            color: var(--text-light);
+        }
+
+        /* Timeline Section */
+        #timeline {
+            background: #090d16;
+        }
+
+        .timeline-container {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 140px;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--accent-cyan) 100%);
+        }
+
+        @media (max-width: 600px) {
+            .timeline-container::before { left: 20px; }
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 40px;
+            margin-bottom: 45px;
+            position: relative;
+        }
+
+        @media (max-width: 600px) {
+            .timeline-item { grid-template-columns: 1fr; gap: 10px; padding-left: 40px; }
+        }
+
+        .time-box {
+            font-family: 'Impact', sans-serif;
+            font-size: 1.3rem;
+            color: #fff;
+            text-align: right;
+            padding-top: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .time-box { text-align: left; color: var(--accent-cyan); }
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 24px;
+            width: 20px;
+            height: 20px;
+            background: var(--bg-card);
+            transform: rotate(45deg);
+        }
+
+        @media (max-width: 600px) {
+            .timeline-content::before { left: -6px; top: 15px; }
+        }
+
+        .timeline-content h4 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .timeline-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Information Section */
+        #details {
+            background: #121724;
+            clip-path: polygon(0 0, 100% 4%, 100% 100%, 0 96%);
+            padding: 140px 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: var(--bg-dark);
+            border-top: 4px solid var(--primary);
+            padding: 40px 30px;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .info-card h3 {
+            font-size: 1.1rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .info-huge {
+            font-family: 'Impact', sans-serif;
+            font-size: 2.8rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .info-text {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .info-list li::before {
+            content: '➔';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .btn-venue {
+            display: inline-block;
+            margin-top: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .btn-venue:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Registration Portal */
+        #register {
+            text-align: center;
+            padding: 140px 20px;
+        }
+
+        .portal-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--primary-gradient);
+            color: #000;
+            padding: 60px 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(255, 69, 0, 0.3);
+            transform: rotate(1deg);
+        }
+
+        .portal-box * {
+            transform: rotate(-1deg);
+        }
+
+        .portal-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .portal-desc {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .portal-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .btn-at {
+            background: #000;
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.2rem;
+            padding: 20px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-at:hover {
+            transform: scale(1.03);
+        }
+
+        .btn-share {
+            background: transparent;
+            color: #000;
+            font-weight: 900;
+            font-size: 1rem;
+            padding: 16px;
+            border-radius: 50px;
+            border: 2px solid #000;
+            transition: background 0.2s;
+        }
+
+        .btn-share:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .portal-deadline {
+            background: #000;
+            color: #fff;
+            display: inline-block;
+            padding: 6px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1rem;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .portal-notes {
+            font-size: 0.9rem;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: left;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #070a12;
+            padding: 80px 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid #161c2e;
+        }
+
+        .footer-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            font-weight: 900;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        /* Proof of Tech (Popup / Version Selector) */
+        .tech-box {
+            background: #111625;
+            border: 2px solid #232d45;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .tech-box h3 {
+            color: #fff;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        /* Pattern Selector Links */
+        .pattern-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .pattern-btn {
+            background: var(--bg-card);
+            border: 1px solid #232d45;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .pattern-btn:hover {
+            border-color: var(--primary);
+            color: #fff;
+        }
+
+        .pattern-btn.active {
+            background: var(--primary-gradient);
+            color: #000;
+            border: none;
+            font-weight: 900;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #161c2e;
+            padding-top: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-banner">🔥 石川YEG全国サッカー大会前夜祭・大熱狂の超実践型テックワークショップ開催！</div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">ISHIKAWA YEG FESTA</div>
+            <nav>
+                <ul>
+                    <li><a href="#concept">Concept</a></li>
+                    <li><a href="#program">Program</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#details">Information</a></li>
+                    <li><a href="#register" class="btn-nav-register">参 加 登 録</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-tag">EXECUTIVE TRAINING WORKSHOP</div>
+                <h1 class="hero-title">
+                    AIを研ぎ澄まし、名湯にほどける。
+                    <span>情熱をカタチにする、石川の特別な一日。</span>
+                </h1>
+                <div class="hero-meta">DATE: 2026.07.10 FRI / PLACE: ISHIKAWA YAMANAKA ONSEN</div>
+                <p class="hero-desc">
+                    令和8年度 石川県連 研修事業「AI×地域告知LP実践 & 課題抽出ワーク」。話題の生成AIを単に「座学で学ぶ」のではない！実際に自らの手を動かし、圧倒的な熱量で実務成果物（LP）をその場で爆創する超・実践型ワークショップ！
+                </p>
+                <div class="hero-actions">
+                    <a href="#register" class="btn-main">即座に出欠登録を行う</a>
+                    <a href="#concept" class="btn-sub">熱い哲学をみる</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="concept">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-label">THE PHILOSOPHY</span>
+                    <h2 class="section-title">なぜ、AIと温泉なのか？</h2>
+                </div>
+                <div class="concept-grid">
+                    <div class="concept-lead">
+                        「学ぶ」から「創り出す」へ！<br>
+                        圧倒的な熱量でやり切る、かつてない成功体験。
+                    </div>
+                    <div class="concept-text">
+                        <p>DXやAIの進化を語る言葉は世にあふれていますが、本当に実務に活かせているでしょうか。本事業では、専門スキルが一切なくても、AIの導きによって本格的な「地域告知LP」が短時間で完成するという圧倒的なブレイクスルーを体験いただきます！</p>
+                        <br>
+                        <p>さらに、地域の「喜怒哀楽」の生データをAIで超高速分析、11月に控える「風会議」への本格的な提言へと繋がる『種』を収穫するワークを実施。ただの座学ではない、あなたのビジネスと地域活動の未来を一変させる特別な一日をご提供します！</p>
+                    </div>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-num">01</div>
+                        <h3 class="feature-title">爆速アウトプット</h3>
+                        <p class="feature-desc">AI×GitHubの黄金比によるLP構築。自社や地域の魅力を形にする、世界で唯一のLPをその場で爆速構築！</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-num">02</div>
+                        <h3 class="feature-title">本音の豊聡耳ワーク</h3>
+                        <p class="feature-desc">地域のリアルな喜怒哀楽（愚痴や本音）をAI分析。風会議を見据えた、鋭い提言の種を熱く拾い集める！</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-num">03</div>
+                        <h3 class="feature-title">山中温泉・翠明</h3>
+                        <p class="feature-desc">白山を望む名湯と山海の美味。最高のリフレッシュが心身に宿り、珠玉のひらめきを呼び起こす！</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-num">04</div>
+                        <h3 class="feature-title">サッカー前夜祭の絆</h3>
+                        <p class="feature-desc">石川の仲間が一堂に集う懇親会。翌日のサッカー全国大会を控えた、最高に熱い前夜祭の熱量をここで！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="program">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-label">PROGRAM & SCHEDULE</span>
+                    <h2 class="section-title">超実践カリキュラム</h2>
+                </div>
+                
+                <div class="program-card">
+                    <div>
+                        <span class="program-badge">SESSION 01</span>
+                        <div class="program-time">40 MINS<br>WORK</div>
+                    </div>
+                    <div>
+                        <h3 class="program-title">AI×GitHubによる「自社・地域告知LP」作成ワーク</h3>
+                        <p class="program-desc">自社製品や地域の知られざる魅力を伝えるPRランディングページ（LP）を、最新の生成AIを相棒として実際に制作します。単なるデモや概念実演ではなく、企画のブレストからデザイン決定、引続き公開用Webパブリッシングまでを40分でやり切る、実務に100%直結する爆速の構築体験です！</p>
+                        <div class="program-tags">
+                            <span class="program-tag">🔥 No Code Skills Required</span>
+                            <span class="program-tag">⚡ Live Web URL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div>
+                        <span class="program-badge">SESSION 02</span>
+                        <div class="program-time">30 MINS<br>WORK</div>
+                    </div>
+                    <div>
+                        <h3 class="program-title">喜怒哀楽から地域課題を抽出する「豊聡耳（とよとみみ）ワーク」</h3>
+                        <p class="program-desc">地域の生の声、メンバーの本音の中にこそ地方創生のチャンスが眠っています。本ワークでは、地域に存在する『喜怒哀楽』の感情データをAIにより一瞬で多角的に整理・分析。11月に控える風会議に向けた政策提言の「種」を、30分間で鮮やかに可視化・回収する画期的なプロセスを体験いただきます！</p>
+                        <div class="program-tags">
+                            <span class="program-tag">📊 Big Data AI Analysis</span>
+                            <span class="program-tag">🌱 Seed for Proposals</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-label">TIME SCHEDULE</span>
+                    <h2 class="section-title">当日のタイムライン（7月10日）</h2>
+                </div>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="time-box">15:00 - 15:30</div>
+                        <div class="timeline-content">
+                            <h4>事業受付</h4>
+                            <p>参加者確認、資料配布、および二次会の最終確認。チームごとのPCやスマホのWi-Fi接続環境等も一気にチェック！</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-box">15:30 - 16:01</div>
+                        <div class="timeline-content">
+                            <h4>オープニング・趣旨説明・講和</h4>
+                            <p>開会の言葉、歌・指針唱和、西田県連会長の熱い挨拶、吉柴委員長による事業趣旨説明と、ワークに向けたインプット講和！</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-box">16:01 - 16:41</div>
+                        <div class="timeline-content">
+                            <h4>セッション1：LP爆速作成ワーク（40分）</h4>
+                            <p>自社・地域PRのLPを、最新AIをパートナーとして実際に企画・作成・世界公開（GitHub Pages連携）まで一気に駆け上がる前半戦！</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-box">16:41 - 16:51</div>
+                        <div class="timeline-content">
+                            <h4>休憩（10分）</h4>
+                            <p>後半戦に向けた機材調整と、頭をリフレッシュするためのインターバル。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-box">16:51 - 17:21</div>
+                        <div class="timeline-content">
+                            <h4>セッション2：本音分析の豊聡耳ワーク（30分）</h4>
+                            <p>地域の「生の本音（喜怒哀楽）」をAIで多角的に整理・分析。風会議に向けた提言の「種」を綺麗に可視化・回収！</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-box">17:21 - 17:30</div>
+                        <div class="timeline-content">
+                            <h4>総括・クロージング</h4>
+                            <p>廣田監事による熱い総括（監事講評）を受け、閉会の言葉をもって研修事業を完全終了！いざ懇親会へ！</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="time-box">18:00 - 20:00</div>
+                        <div class="timeline-content">
+                            <h4>大懇親会 (お風呂自慢の宿 翠明)</h4>
+                            <p>加賀・山中の名湯で汗を流し、北陸極上の美味を囲む特別な懇親会。翌日のサッカー大会に向けた熱い結束の時間をここで！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="details">
+            <div class="section-inner">
+                <div class="section-header">
+                    <span class="section-label">EVENT INFORMATION</span>
+                    <h2 class="section-title">募集・開催詳細</h2>
+                </div>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>DATE / TIME</h3>
+                        <div class="info-huge">07.10 FRI</div>
+                        <p class="info-text">
+                            令和8年 (2026年) 7月10日 (金)<br>
+                            受付 15:00 / 研修事業 15:30 - 17:30 / 懇親会 18:00 - 20:00 (2次会 20:00 - 23:00)
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>VENUE</h3>
+                        <h4 style="font-size:1.3rem; font-weight:900; margin-bottom:10px;">お風呂自慢の宿 翠明</h4>
+                        <p class="info-text">
+                            〒922-0114 石川県加賀市山中温泉東町１ホ１０<br>
+                            TEL: 0761-78-1616
+                        </p>
+                        <a href="http://www.suimei.co.jp/page2" target="_blank" class="btn-venue">公式HPをみる ➔</a>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>REGISTRATION FEE</h3>
+                        <div class="info-huge">¥15,000</div>
+                        <p class="info-text">
+                            登録料 (研修事業費・懇親会費・宿泊費[1泊2食]込)<br>
+                            ※宿泊をされない場合（日帰り、または懇親会のみ参加）でも参加費は一律となります。遅くまで語り明かしましょう！
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>BRING / SETUP</h3>
+                        <ul class="info-list">
+                            <li>ノートPC 1台 (1人1台必須)</li>
+                            <li>スマートフォン (完成LP確認等に利用)</li>
+                            <li>Googleアカウント (チームで1つ必須)</li>
+                            <li>GitHubアカウント (事前作成を強く推奨)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>CAPACITY</h3>
+                        <div class="info-huge">60 MEMBERS</div>
+                        <p class="info-text">石川県連 全会員対象。客室手配・部屋割り調整の都合上、爆速での早期登録にご協力ください！</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>OTHERS</h3>
+                        <ul class="info-list">
+                            <li>二次会費：6,000円（別途現地払い、20:00〜23:00予定）</li>
+                            <li>宿泊は原則4名1室の相部屋です（シングル希望は別途+1,500円）。</li>
+                            <li>登録料は後日各単会（CCI）経由でのご請求となります。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="register">
+            <div class="section-inner">
+                <div class="portal-box">
+                    <h2 class="portal-title">参加を申し込む</h2>
+                    <p class="portal-desc">Register via Angel Touch System</p>
+                    
+                    <div class="portal-btn-group">
+                        <a href="#" class="btn-at">エンジェルタッチ(AT)で出欠登録する</a>
+                        <a href="#" class="btn-share" onclick="navigator.clipboard.writeText(window.location.href); alert('URLをコピーしました！単会メンバーへ共有してください！'); return false;">このLPのURLをコピーして仲間に共有する</a>
+                    </div>
+
+                    <div class="portal-deadline">回答期日：07.03 FRI 厳守</div>
+                    <div class="portal-notes">
+                        精緻かつ迅速な精算および客室割り手配を行うため、期日厳守をお願いいたします。<br>
+                        <strong>【キャンセルポリシー】</strong>7月6日（月）以降のキャンセルにつきましては、不参加（欠席）となった場合でも宿泊費・懇親会費の全額（15,000円）をご負担いただきますので予めご了承ください。
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Executive Host</h4>
+                <p>
+                    石川県商工会議所青年部連合会<br>
+                    令和8年度 県連会長 西田 敬志<br>
+                    地域連携委員会 担当理事 藤田 智樹 / 委員長 吉柴 文悟
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>AI Craftmanship</h4>
+                <p>
+                    本研修会は「案内文_事業-2026.07.10」及び「研修事業_地域連携委員会_上程-2026.07.10」議案に基づいて上程された審議可決事業です。この紹介LP自体がAI（Gemini）のみで制作されています。
+                </p>
+            </div>
+        </div>
+
+        <div class="section-inner">
+            <div class="tech-box">
+                <h3>Proof of Tech / デザインパターン選択</h3>
+                <p>実務におけるAIのデザイン・構成創出力を検証するためのデモとして、同一コンテンツから異なる4パターンのLPを完全自動生成しています。</p>
+                <div class="pattern-selector">
+                    <a href="index.html" class="pattern-btn">01 高級マガジン風</a>
+                    <a href="dsgn_buisiness.html" class="pattern-btn">02 ビジネス・シンプル風</a>
+                    <a href="dsgn_community.html" class="pattern-btn active">03 熱血・フェス風（現在）</a>
+                    <a href="dsgn_cyber.html" class="pattern-btn">04 近未来サイバー風（準備中）</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright" style="margin-top: 50px;">
+            © 2026 ISHIKAWA YEG REGIONAL ALLIANCE. ALL RIGHTS RESERVED. <br>
+            DESIGN POWERED BY GEMINI AI - LIVE WORK DEMONSTRATION
+        </div>
+    </footer>
+
+</body>
+</html>
