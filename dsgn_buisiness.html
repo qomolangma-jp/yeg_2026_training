@@ -636,11 +636,197 @@
             flex-wrap: wrap;
             gap: 10px;
         }
+
+        /* Announcement Banner */
+        .ai-banner {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(0,82,204,0.3);
+        }
+        .ai-banner .banner-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ai-banner .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fbbf24;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .ai-banner .banner-label {
+            color: #60a5fa;
+            font-weight: 700;
+        }
+        .ai-banner .btn-banner {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-decoration: underline;
+            color: #93c5fd;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .ai-banner .btn-banner:hover {
+            color: #fff;
+        }
+
+        /* Modal */
+        .ai-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            backdrop-filter: blur(4px);
+        }
+        .ai-modal-overlay.is-open {
+            display: flex;
+        }
+        .ai-modal {
+            background: #fff;
+            border: 2px solid var(--primary);
+            max-width: 480px;
+            width: 100%;
+            padding: 32px;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        }
+        .ai-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+        .ai-modal-close:hover { color: var(--primary); }
+        .ai-modal-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+        }
+        .ai-modal h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        .ai-modal p {
+            font-size: 0.78rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .lp-links-title {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-align: center;
+            margin: 20px 0 12px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        .lp-links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .lp-link-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-left: 3px solid var(--primary);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lp-link-item:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .lp-link-num {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 14px;
+        }
+        .lp-link-item:hover .lp-link-num { color: rgba(255,255,255,0.7); }
+        .lp-link-item.is-current {
+            border-left-color: var(--text-muted);
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            cursor: default;
+            pointer-events: none;
+        }
+        .lp-link-item.is-disabled {
+            border-left-color: var(--border);
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .btn-modal-close {
+            width: 100%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-modal-close:hover { background: var(--primary); }
     </style>
 </head>
 <body>
 
     <header>
+        <!-- Announcement Banner -->
+        <div class="ai-banner">
+            <span class="banner-left">
+                <span class="pulse-dot"></span>
+                <span><span class="banner-label">AI DESIGN INSPIRED:</span> このLPはAI（Gemini）のみによって完全構築されました。</span>
+            </span>
+            <button class="btn-banner" onclick="openAiModal()">制作背景をみる →</button>
+        </div>
         <div class="nav-container">
             <div class="logo">ISHIKAWA YEG <span>DX</span></div>
             <nav>
@@ -931,6 +1117,59 @@
             </div>
         </div>
     </footer>
+
+
+    <!-- AI制作背景 Modal -->
+    <div id="aiModal" class="ai-modal-overlay">
+        <div class="ai-modal">
+            <button class="ai-modal-close" onclick="closeAiModal()">&#x2715;</button>
+            <span class="ai-modal-label">Proof of Tech</span>
+            <h3>このランディングページの制作背景</h3>
+            <p>
+                このLPは、上程資料（<strong>「研修事業_地域連携委員会_上程-2026.07.10」</strong>）のテキスト・議案情報を正確にインプットとして、AI（Gemini）のみを使って完全に自動設計したものです。
+            </p>
+            <p>
+                プログラミングの知識や高価なデザインツール、専門デザイナーへの発注を一切挟むことなく、<strong>洗練されたビジネス風LPが誕生しました。</strong>
+            </p>
+            <p>
+                「Session 1」では、参加者自らがこれと同様のブレイクスルーをその場で体験できます。
+            </p>
+
+            <p class="lp-links-title">— 全デザインパターンを見る —</p>
+            <div class="lp-links-grid">
+                <a href="index.html" class="lp-link-item">
+                    <span class="lp-link-num">01</span>
+                    <span>高級マガジン風</span>
+                </a>
+                <span class="lp-link-item is-current">
+                    <span class="lp-link-num">02</span>
+                    <span>ビジネス・シンプル風 <small>← 現在</small></span>
+                </span>
+                <span class="lp-link-item is-disabled">
+                    <span class="lp-link-num">03</span>
+                    <span>準備中...</span>
+                </span>
+                <span class="lp-link-item is-disabled">
+                    <span class="lp-link-num">04</span>
+                    <span>準備中...</span>
+                </span>
+            </div>
+
+            <button class="btn-modal-close" onclick="closeAiModal()">CLOSE WINDOW</button>
+        </div>
+    </div>
+
+    <script>
+        function openAiModal() {
+            document.getElementById('aiModal').classList.add('is-open');
+        }
+        function closeAiModal() {
+            document.getElementById('aiModal').classList.remove('is-open');
+        }
+        document.getElementById('aiModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAiModal();
+        });
+    </script>
 
 </body>
 </html>
