@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -627,6 +627,84 @@
             padding-top: 20px;
         }
 
+        /* Soccer Cross-Promotion */
+        .soccer-fes-promo {
+            background: #0b0f19;
+            padding: 80px 20px;
+            border-top: 4px solid #ff4500;
+            text-align: center;
+        }
+        .soccer-fes-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        .soccer-fes-eyebrow {
+            display: inline-block;
+            background: var(--primary-gradient);
+            color: #000;
+            font-weight: 900;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            padding: 6px 20px;
+            margin-bottom: 24px;
+        }
+        .soccer-fes-date {
+            color: var(--accent-cyan);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+        .soccer-fes-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .soccer-fes-sub {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto 36px;
+            line-height: 1.8;
+        }
+        .soccer-fes-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .soccer-fes-tag {
+            border: 1px solid #ff4500;
+            color: #ffaa00;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 30px;
+        }
+        .soccer-fes-btn {
+            display: inline-block;
+            background: var(--primary-gradient);
+            color: #000;
+            font-weight: 900;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            padding: 18px 48px;
+            border-radius: 50px;
+            transition: opacity 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+        .soccer-fes-btn:hover {
+            opacity: 0.85;
+            transform: scale(1.03);
+        }
+
         /* Footer */
         footer {
             background: #070a12;
@@ -971,22 +1049,39 @@
             <div class="section-inner">
                 <div class="portal-box">
                     <h2 class="portal-title">参加を申し込む</h2>
-                    <p class="portal-desc">Register via Angel Touch System</p>
-                    
-                    <div class="portal-btn-group">
-                        <a href="#" class="btn-at">エンジェルタッチ(AT)で出欠登録する</a>
-                        <a href="#" class="btn-share" onclick="navigator.clipboard.writeText(window.location.href); alert('URLをコピーしました！単会メンバーへ共有してください！'); return false;">このLPのURLをコピーして仲間に共有する</a>
-                    </div>
+                    <p class="portal-desc">Contact your local CCI office</p>
 
                     <div class="portal-deadline">回答期日：07.03 FRI 厳守</div>
                     <div class="portal-notes">
-                        精緻かつ迅速な精算および客室割り手配を行うため、期日厳守をお願いいたします。<br>
+                        参加申し込みは、各単会の事務局にて聴き取りを行います。単会よりご案内がありますので、そちらへお問い合わせください。<br>
                         <strong>【キャンセルポリシー】</strong>7月6日（月）以降のキャンセルにつきましては、不参加（欠席）となった場合でもご参加コースに応じた参加費全額（宿泊コース：15,000円 / 日帰りコース：13,000円）をご負担いただきますので予めご了承ください。
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Soccer Event Cross-Promotion -->
+    <section class="soccer-fes-promo">
+        <div class="soccer-fes-inner">
+            <span class="soccer-fes-eyebrow">&#128293; Next Event</span>
+            <p class="soccer-fes-date">翌日 2026.07.11 SAT &mdash; 福井へ行け！</p>
+            <h3 class="soccer-fes-title">BUILD UP JAPAN<br>FUKUI 2026</h3>
+            <p class="soccer-fes-sub">
+                研修が終わったら終わりじゃない。翌日は福井でサッカー大会！<br>
+                未経験OK&nbsp;&middot;&nbsp;バブルサッカー&nbsp;&middot;&nbsp;夜の大懇親会。YEGの仲間と最高の週末を作ろう。
+            </p>
+            <div class="soccer-fes-tags">
+                <span class="soccer-fes-tag">&#9917; 11人制エンジョイリーグ</span>
+                <span class="soccer-fes-tag">&#129399; バブルサッカー</span>
+                <span class="soccer-fes-tag">&#127867; 夜の大懇親会</span>
+                <span class="soccer-fes-tag">&#127881; 未経験・観戦OK</span>
+            </div>
+            <a href="https://qomolangma-jp.github.io/lp_yeg_soccer_2026/" target="_blank" rel="noopener" class="soccer-fes-btn">
+                大会特設サイトを見る &#128640;
+            </a>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-grid">

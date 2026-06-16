@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -726,6 +726,107 @@
             color: var(--text-muted);
         }
 
+        /* Soccer Cross-Promotion */
+        .soccer-cyber-promo {
+            background: var(--bg-black);
+            padding: 80px 20px;
+            border-top: 1px solid var(--primary-pink);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .soccer-cyber-promo::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(127,0,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(127,0,255,0.04) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+        .soccer-cyber-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .soccer-cyber-label {
+            font-family: 'DotGothic16', sans-serif;
+            color: var(--neon-green);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-shadow: 0 0 8px var(--neon-green);
+            margin-bottom: 20px;
+        }
+        .soccer-cyber-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .soccer-cyber-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2rem, 7vw, 4rem);
+            line-height: 1.05;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .soccer-cyber-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #fff;
+            margin-bottom: 28px;
+            text-shadow: var(--neon-glow-pink);
+        }
+        .soccer-cyber-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            max-width: 600px;
+            margin: 0 auto 36px;
+            line-height: 2;
+        }
+        .soccer-cyber-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .soccer-cyber-tag {
+            border: 1px solid var(--primary-pink);
+            color: var(--primary-pink);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 18px;
+            border-radius: 2px;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 8px rgba(255,0,127,0.2);
+        }
+        .soccer-cyber-btn {
+            display: inline-block;
+            background: var(--primary-gradient);
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 16px 48px;
+            border-radius: 2px;
+            transition: opacity 0.2s, box-shadow 0.2s;
+            box-shadow: var(--neon-glow-purple);
+            text-decoration: none;
+        }
+        .soccer-cyber-btn:hover {
+            opacity: 0.85;
+            box-shadow: 0 0 20px rgba(127,0,255,0.7), 0 0 40px rgba(255,0,127,0.5);
+        }
+
         /* Footer */
         footer {
             background: var(--bg-card);
@@ -1069,21 +1170,39 @@
         <section id="register">
             <div class="portal-box-cyber">
                 <h2 class="portal-title-cyber">参加登録 portal</h2>
-                <p class="portal-desc-cyber">Register via Angel Touch System</p>
-                
-                <div class="portal-actions-cyber">
-                    <a href="#" class="btn-portal-at">エンジェルタッチ(AT)で出欠登録</a>
-                    <a href="#" class="btn-portal-share" onclick="navigator.clipboard.writeText(window.location.href); alert('URLをコピーしました！単会メンバーへ共有してください。'); return false;">このLPのURLをコピー</a>
-                </div>
+                <p class="portal-desc-cyber">Contact your local CCI office</p>
 
                 <div class="portal-deadline-cyber">回答期日：07.03 FRI 厳守</div>
                 <div class="portal-notes-cyber">
-                    精緻かつ迅速な精算および客室割り手配を行うため、期日厳守をお願いいたします。<br>
+                    参加申し込みは、各単会の事務局にて聴き取りを行います。単会よりご案内がありますので、そちらへお問い合わせください。<br>
                     <strong>【キャンセルポリシー】</strong>7月6日（月）以降のキャンセルにつきましては、不参加（欠席）となった場合でもご参加コースに応じた参加費全額（宿泊コース：15,000円 / 日帰りコース：13,000円）をご負担いただきます。
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- Soccer Event Cross-Promotion -->
+    <section class="soccer-cyber-promo">
+        <div class="soccer-cyber-inner">
+            <p class="soccer-cyber-label">// NEXT_EVENT: CONNECTED</p>
+            <p class="soccer-cyber-date">2026.07.11 SAT &mdash; FUKUI CITY</p>
+            <h3 class="soccer-cyber-title">BUILD UP JAPAN</h3>
+            <p class="soccer-cyber-subtitle">FUKUI 2026 / 第23回全国サッカー大会</p>
+            <p class="soccer-cyber-desc">
+                研修プロトコル完了の翌日。次のミッションは福井。<br>
+                未経験者OK&nbsp;&middot;&nbsp;バブルサッカー&nbsp;&middot;&nbsp;夜の大懇親会。YEGネットワークを加速させろ。
+            </p>
+            <div class="soccer-cyber-tags">
+                <span class="soccer-cyber-tag">&#9917; 11人制エンジョイリーグ</span>
+                <span class="soccer-cyber-tag">&#129399; バブルサッカー</span>
+                <span class="soccer-cyber-tag">&#127867; 夜の大懇親会</span>
+                <span class="soccer-cyber-tag">未経験OK</span>
+            </div>
+            <a href="https://qomolangma-jp.github.io/lp_yeg_soccer_2026/" target="_blank" rel="noopener" class="soccer-cyber-btn">
+                ACCESS EVENT SITE &rarr;
+            </a>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-grid">
