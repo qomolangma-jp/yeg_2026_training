@@ -410,6 +410,68 @@
                 display: none !important;
             }
         }
+
+        .shared-page-links {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 32px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .shared-page-links__inner {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .shared-page-links__title {
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+
+        .shared-page-links__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+        }
+
+        .shared-page-links__item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.45);
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: background-color 0.2s, border-color 0.2s;
+            font-size: 12px;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
+            font-weight: 600;
+        }
+
+        .shared-page-links__item:hover {
+            background: rgba(197, 168, 128, 0.18);
+            border-color: #c5a880;
+        }
+
+        .shared-page-links__item.is-current {
+            background: rgba(197, 168, 128, 0.25);
+            border-color: #c5a880;
+            pointer-events: none;
+        }
+
+        .shared-page-links__num {
+            min-width: 22px;
+            color: #c5a880;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+        }
     </style>
 </head>
 <body>
@@ -419,11 +481,12 @@
         <section class="section" style="background: linear-gradient(135deg, #f1f5f9, #e2e8f0);">
             <div class="container" style="text-align: center;">
                 <span class="section-badge opening">石川県商工会議所青年部連合会 研修事業</span>
-                <h1 class="slide-title" style="font-size: clamp(34px, 4.5vw, 64px); line-height: 1.1; margin-bottom: 2%;">
-                    2026年、なぜ私たちは<br>ここに<span>集まったのか？</span>
+                <h1 class="slide-title" style="font-size: clamp(30px, 4vw, 56px); line-height: 1.2; margin-bottom: 2%;">
+                    AIを活用した<span>「地域告知LP作成」</span>と<br>
+                    <span>「課題抽出」</span>の実践ワーク
                 </h1>
-                <p class="slide-lead" style="color: var(--color-secondary-neon); margin-bottom: 4%;">
-                    ～情報発信のパラダイムシフトと、3ヶ月後の未来を動かす武器～
+                <p class="slide-lead" style="color: var(--color-secondary-neon); font-size: clamp(18px, 2vw, 26px); margin-bottom: 4%; font-weight: 900;">
+                    ～風会議に向けた提言の種まき：情報発信のパラダイムシフトと、3ヶ月後の未来を動かす武器～
                 </p>
                 <div class="graphic-card highlight" style="max-width: 800px; margin: 0 auto; text-align: left; height: auto;">
                     <div class="card-headline" style="color: var(--color-text-main);"><i class="fa-solid fa-bullseye" style="color: var(--color-primary-neon);"></i> 本日のゴール</div>
@@ -797,5 +860,18 @@
             }
         });
     </script>
+
+    <section class="shared-page-links" aria-label="ページ相互リンク">
+        <div class="shared-page-links__inner">
+            <p class="shared-page-links__title">Page Navigation</p>
+            <div class="shared-page-links__grid">
+                <a href="../index.html" class="shared-page-links__item"><span class="shared-page-links__num">01</span><span>メインLP</span></a>
+                <a href="../dsgn_buisiness.html" class="shared-page-links__item"><span class="shared-page-links__num">02</span><span>ビジネス版</span></a>
+                <a href="../dsgn_community.html" class="shared-page-links__item"><span class="shared-page-links__num">03</span><span>コミュニティ版</span></a>
+                <a href="../dsgn_cyber.html" class="shared-page-links__item"><span class="shared-page-links__num">04</span><span>サイバー版</span></a>
+                <span class="shared-page-links__item is-current"><span class="shared-page-links__num">05</span><span>セッション資料（現在）</span></span>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

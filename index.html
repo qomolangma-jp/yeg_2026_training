@@ -68,6 +68,67 @@
         .hero-overlay {
             background: linear-gradient(to bottom, rgba(17,17,17,0.4) 0%, rgba(17,17,17,0.85) 100%);
         }
+        .shared-page-links {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 32px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .shared-page-links__inner {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .shared-page-links__title {
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+            font-family: "Montserrat", "Noto Serif JP", serif;
+            font-weight: 700;
+        }
+
+        .shared-page-links__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+        }
+
+        .shared-page-links__item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.45);
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: background-color 0.2s, border-color 0.2s;
+            font-size: 12px;
+            font-family: "Montserrat", "Noto Serif JP", serif;
+            font-weight: 600;
+        }
+
+        .shared-page-links__item:hover {
+            background: rgba(197, 168, 128, 0.18);
+            border-color: #c5a880;
+        }
+
+        .shared-page-links__item.is-current {
+            background: rgba(197, 168, 128, 0.25);
+            border-color: #c5a880;
+            pointer-events: none;
+        }
+
+        .shared-page-links__num {
+            min-width: 22px;
+            color: #c5a880;
+            font-family: "Cinzel", serif;
+            font-weight: 700;
+            font-size: 11px;
+        }
     </style>
 </head>
 <body class="bg-brand-paper text-brand-charcoal font-serif antialiased selection:bg-brand-gold selection:text-white relative overflow-x-hidden">
@@ -706,6 +767,19 @@
             <span class="text-xs font-sans tracking-wider" id="toastMessage">コピーが完了しました！</span>
         </div>
     </div>
+
+    <section class="shared-page-links" aria-label="ページ相互リンク">
+        <div class="shared-page-links__inner">
+            <p class="shared-page-links__title">Page Navigation</p>
+            <div class="shared-page-links__grid">
+                <span class="shared-page-links__item is-current"><span class="shared-page-links__num">01</span><span>メインLP（現在）</span></span>
+                <a href="dsgn_buisiness.html" class="shared-page-links__item"><span class="shared-page-links__num">02</span><span>ビジネス版</span></a>
+                <a href="dsgn_community.html" class="shared-page-links__item"><span class="shared-page-links__num">03</span><span>コミュニティ版</span></a>
+                <a href="dsgn_cyber.html" class="shared-page-links__item"><span class="shared-page-links__num">04</span><span>サイバー版</span></a>
+                <a href="session/index.html" class="shared-page-links__item"><span class="shared-page-links__num">05</span><span>セッション資料</span></a>
+            </div>
+        </div>
+    </section>
 
     <script>
         // Smoothly adjust header bg opacity on scroll
