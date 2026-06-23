@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>石川県連YEG研修事業 | AI実務成果物作成ワークショップ</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome (Icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -86,6 +84,12 @@
             border-radius: 100px;
             margin-bottom: 15px;
             letter-spacing: 1px;
+        }
+
+        .section-badge.opening {
+            background: rgba(59, 130, 246, 0.08);
+            border-color: rgba(59, 130, 246, 0.2);
+            color: var(--color-secondary-neon);
         }
 
         .section-badge.session1 {
@@ -224,6 +228,27 @@
         .row-val { color: var(--color-text-main); text-align: right; }
         .highlight-val { color: var(--color-primary-neon); }
 
+        /* 外部リンクエリアボタン */
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--color-secondary-neon), #2563eb);
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+            transition: var(--transition);
+            margin: 10px;
+        }
+        .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
+        }
+
         /* グリッド配置 */
         .step-grid {
             display: grid;
@@ -356,7 +381,7 @@
         @media (max-width: 991px) {
             .scroll-container {
                 overflow-y: auto;
-                scroll-snap-type: none; /* スマホでは通常スクロール */
+                scroll-snap-type: none;
                 height: auto;
             }
 
@@ -391,54 +416,149 @@
 
     <div class="scroll-container" id="main-scroll">
 
-        <!-- ==================== INTRO ==================== -->
-        <!-- SLIDE 1: 目的 -->
+        <section class="section" style="background: linear-gradient(135deg, #f1f5f9, #e2e8f0);">
+            <div class="container" style="text-align: center;">
+                <span class="section-badge opening">石川県商工会議所青年部連合会 研修事業</span>
+                <h1 class="slide-title" style="font-size: clamp(34px, 4.5vw, 64px); line-height: 1.1; margin-bottom: 2%;">
+                    2026年、なぜ私たちは<br>ここに<span>集まったのか？</span>
+                </h1>
+                <p class="slide-lead" style="color: var(--color-secondary-neon); margin-bottom: 4%;">
+                    ～情報発信のパラダイムシフトと、3ヶ月後の未来を動かす武器～
+                </p>
+                <div class="graphic-card highlight" style="max-width: 800px; margin: 0 auto; text-align: left; height: auto;">
+                    <div class="card-headline" style="color: var(--color-text-main);"><i class="fa-solid fa-bullseye" style="color: var(--color-primary-neon);"></i> 本日のゴール</div>
+                    <p class="card-text" style="font-size: 18px; margin-top: 10px;">
+                        単なる「ホームページ作成講座」ではありません。<br>
+                        最新のAIを相棒に、<strong style="color: var(--color-secondary-neon); font-weight: 900;">「一瞬でシステムを開発し、世界へ発信・集約する力」</strong>を自社と地域のために持ち帰っていただきます。
+                    </p>
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="https://qomolangma-jp.github.io/yeg_2026_training/" target="_blank" class="link-button">
+                        <i class="fa-solid fa-circle-info"></i> 石川県連研修事業LP
+                    </a>
+                </div>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
+
         <section class="section">
             <div class="container">
-                <span class="section-badge">研修目的の共有</span>
-                <h1 class="slide-title">AIを学ぶな、<span>成果</span>を作れ。</h1>
-                <p class="slide-lead">お勉強はゼロ。今日、実務で今すぐ動く武器を持ち帰る[cite: 5]。</p>
+                <span class="section-badge opening">世の中の趨勢①</span>
+                <h1 class="slide-title">届けたい情報が、<span>本当に届いていますか？</span></h1>
+                <p class="slide-lead">「SNSで発信すれば広がる」というのは過去の常識。情報伝達に地殻変動が起きています。</p>
                 
                 <div class="slide-body">
-                    <div class="graphic-card" style="opacity: 0.5;">
-                        <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
-                        <div class="card-headline">座学・お勉強</div>
-                        <p class="card-text">仕組みや単語を覚えるだけで、実務に繋がらない従来の研修[cite: 5]</p>
+                    <div class="graphic-card">
+                        <div class="card-headline wrong"><i class="fa-solid fa-ban"></i> SNS発信の限界</div>
+                        <p class="card-text" style="margin-bottom: 15px;">SNSは「繋がる」ツールであり、「正確に伝える」ツールではありません。</p>
+                        <ul class="graphic-list">
+                            <li class="wrong"><i class="fa-solid fa-xmark"></i> アカウントがないとそもそも見られない</li>
+                            <li class="wrong"><i class="fa-solid fa-xmark"></i> デザインが制限され、重要情報（日時・場所）が埋もれる</li>
+                        </ul>
                     </div>
                     <div class="graphic-card highlight">
-                        <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
-                        <div class="card-headline">本日のゴール</div>
-                        <p class="card-text">AIを道具としてぶん回し、今日この場で自社・地域の「ホームページ（LP）」を1枚完成させる[cite: 5]</p>
+                        <div class="card-headline correct"><i class="fa-solid fa-qrcode"></i> QRコード × LP（Webページ）</div>
+                        <p class="card-text" style="margin-bottom: 15px;">2026年、国籍も壁も超えて「正しく伝える」ためにWebページが再評価されています。</p>
+                        <ul class="graphic-list">
+                            <li class="correct"><i class="fa-solid fa-check"></i> チラシや看板から1枚のWebページへ最短誘導</li>
+                            <li class="correct"><i class="fa-solid fa-language"></i> アクセスした瞬間に<span style="color:var(--color-primary-neon)">自国語へ自動翻訳される時代</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
         </section>
 
+        <section class="section" style="background: linear-gradient(135deg, #f8fafc, #eff6ff);">
+            <div class="container">
+                <span class="section-badge opening">世の中の趨勢②</span>
+                <h1 class="slide-title">古の技術「HTML」が<span>AIで大化けした</span></h1>
+                <p class="slide-lead">Web作成の歴史は変わりました。今、ツール会社の有料プランに縛られる必要はありません。</p>
+                
+                <div class="slide-body">
+                    <div class="graphic-card">
+                        <div class="card-headline" style="color: var(--color-text-sub);"><i class="fa-solid fa-history"></i> Web作成20年の変遷と罠</div>
+                        <div class="table-like-list">
+                            <div class="table-row"><span class="row-label">20年前</span><span class="row-val">難しいコードを本で猛勉強（一握りの世界）</span></div>
+                            <div class="table-row"><span class="row-label">2010年代</span><span class="row-val">ブログ感覚のWordPressが登場</span></div>
+                            <div class="table-row"><span class="row-label">ここ数年</span><span class="row-val" style="color: #ef4444;">ノーコードツールが流行 ➔ <strong style="font-weight:900;">すぐ有料プランへ誘導</strong></span></div>
+                        </div>
+                    </div>
+                    <div class="graphic-card highlight" style="background: var(--color-surface);">
+                        <div class="card-headline correct"><i class="fa-solid fa-wand-magic-sparkles"></i> 2026年の結論：AIに書かせる</div>
+                        <p class="card-text" style="font-size: 16px; line-height: 1.6;">
+                            言葉（日本語）で指示するだけで、高クオリティなHTMLコードが一瞬で完成する時代です。<br><br>
+                            他社のルールに縛られない、<strong style="color: var(--color-primary-neon); font-weight: 900;">「完全無料」「自由度無限大」の100%自社製サイト</strong>が誰でも手に入ります。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
 
-        <!-- ==================== SESSION 1 ==================== -->
-        <!-- SLIDE 2: なぜあえてHTMLか -->
+        <section class="section">
+            <div class="container">
+                <span class="section-badge opening">本日の価値</span>
+                <h1 class="slide-title">皆さんに持ち帰ってほしい<span>「2つの強力な武器」</span></h1>
+                <p class="slide-lead">デジタル理解度1%でも大丈夫。コピー＆ペーストができれば、今日の2時間で手に入ります。</p>
+                
+                <div class="slide-body" style="margin-top: 4%;">
+                    <div class="graphic-card highlight">
+                        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="card-headline" style="font-size: 22px;">① 「AIを相棒に自分で作れる」という絶対的な自信</div>
+                        <p class="card-text" style="margin-top: 10px;">外注すると数十万円かかるWebサイトが、AIを使えば15分・無料で公開できる時代の最先端を体感。実業家としての視野が確実に変わります。</p>
+                    </div>
+                    <div class="graphic-card purple-highlight">
+                        <div class="card-icon" style="color: var(--color-accent-purple);"><i class="fa-solid fa-comments-text"></i></div>
+                        <div class="card-headline" style="font-size: 22px; color: var(--color-text-main);">② 11月の風会議で県を動かすための「意見集約フォーム」</div>
+                        <p class="card-text" style="margin-top: 10px;">今日作るLPは、地元（オラが村）に持ち帰り、本日不参加だった仲間のリアルな声を吸い上げるプラットフォームになります。その声をAIで統合し、県を動かすテーマにします。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
+
+        <section class="section" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff;">
+            <div class="container" style="text-align: center;">
+                <span class="section-badge" style="background: rgba(25px, 255px, 255px, 0.1); color: var(--color-primary-neon); border-color: rgba(16, 185, 129, 0.3);">Let's Start Workshop</span>
+                <h1 class="slide-title" style="color: #fff; font-size: clamp(36px, 4.8vw, 68px); line-height: 1.1; margin-bottom: 3%;">
+                    さあ、未来をハックする武器を、<br>今から<span>15分</span>で作ってみましょう！
+                </h1>
+                <div style="max-width: 750px; margin: 0 auto; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: left;">
+                    <p style="font-size: clamp(16px, 1.6vw, 22px); font-weight: 700; line-height: 1.6; color: #cbd5e1;">
+                        <i class="fa-solid fa-code-slash" style="color: var(--color-secondary-neon); margin-right: 10px;"></i> コードは1行も書きません。AIに丸投げします。<br>
+                        <i class="fa-solid fa-fire" style="color: #f59e0b; margin-right: 10px;"></i> 皆さんの「推し」や「宣伝したいもの」をテーマに、世界に1つだけのあなたのページを爆速で立ち上げます！
+                    </p>
+                </div>
+                <h2 style="font-size: clamp(20px, 2.5vw, 32px); font-weight: 900; margin-top: 4%; letter-spacing: 1px;">
+                    セッション1「AI×GitHub 爆速LP作成ワークショップ」スタート！
+                </h2>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down" style="color: #fff; opacity: 0.3;"></i></div>
+        </section>
+
+
         <section class="section">
             <div class="container">
                 <span class="section-badge session1">Session 01 : LP作成ワーク</span>
                 <h1 class="slide-title">なぜ今、あえて<span>HTML</span>なのか？</h1>
-                <p class="slide-lead">アプリのルールに縛られない、世界共通の「デジタル文字板」[cite: 5]</p>
+                <p class="slide-lead">企業のアプリやルールに縛られない、世界共通の「デジタル文字板」</p>
                 
                 <div class="slide-body">
                     <div class="graphic-card">
                         <div class="card-headline wrong"><i class="fa-solid fa-triangle-exclamation"></i> SNS・チラシの限界</div>
                         <ul class="graphic-list">
-                            <li class="wrong"><i class="fa-solid fa-xmark"></i> アカウントがないと見られない[cite: 5]</li>
-                            <li class="wrong"><i class="fa-solid fa-xmark"></i> 情報が流れて消えてしまう[cite: 5]</li>
-                            <li class="wrong"><i class="fa-solid fa-xmark"></i> 外国人へ言葉が伝わらない[cite: 5]</li>
+                            <li class="wrong"><i class="fa-solid fa-xmark"></i> アカウントがないと見られない</li>
+                            <li class="wrong"><i class="fa-solid fa-xmark"></i> タイムラインで情報が流れて消える</li>
+                            <li class="wrong"><i class="fa-solid fa-xmark"></i> 外国人へリアルな言葉が伝わらない</li>
                         </ul>
                     </div>
                     <div class="graphic-card highlight">
                         <div class="card-headline correct"><i class="fa-solid fa-globe"></i> 世界共通規格 HTML</div>
                         <ul class="graphic-list">
-                            <li class="correct"><i class="fa-solid fa-check"></i> ネットがあれば誰でも一発閲覧[cite: 5]</li>
-                            <li class="correct"><i class="fa-solid fa-check"></i> スマホ機能で「自動翻訳」される[cite: 5]</li>
-                            <li class="correct"><i class="fa-solid fa-check"></i> 1文字 of 修正・変更が1秒で完了[cite: 5]</li>
+                            <li class="correct"><i class="fa-solid fa-check"></i> ネット環境があれば誰でも一発閲覧</li>
+                            <li class="correct"><i class="fa-solid fa-check"></i> スマホ標準機能で多言語へ「自動翻訳」</li>
+                            <li class="correct"><i class="fa-solid fa-check"></i> 1文字の修正・変更・更新が1秒で完了</li>
                         </ul>
                     </div>
                 </div>
@@ -446,28 +566,27 @@
             <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
         </section>
 
-        <!-- SLIDE 3: ノーコードとの違い -->
         <section class="section">
             <div class="container">
                 <span class="section-badge session1">Session 01 : LP作成ワーク</span>
                 <h1 class="slide-title">依存の「作業」から、自立の<span>開発</span>へ</h1>
-                <p class="slide-lead">ノーコードの枠を飛び越え、完全無料・無限の自由度を手に入れる[cite: 5]。</p>
+                <p class="slide-lead">ノーコードの枠を飛び越え、完全無料・無限の自由度を手に入れる。</p>
                 
                 <div class="slide-body">
                     <div class="graphic-card">
                         <div class="card-headline" style="color:#ef4444;"><i class="fa-solid fa-ban"></i> ノーコードツールの罠</div>
                         <div class="table-like-list">
-                            <div class="table-row"><span class="row-label">操作性</span><span class="row-val">企業ごとにUIが異なり、迷う[cite: 5]</span></div>
-                            <div class="table-row"><span class="row-label">コスト</span><span class="row-val" style="color:#ef4444;">機能追加で有料プランへ誘導[cite: 5]</span></div>
-                            <div class="table-row"><span class="row-label">拡張性</span><span class="row-val">テンプレートの枠から出られない[cite: 5]</span></div>
+                            <div class="table-row"><span class="row-label">操作性</span><span class="row-val">企業ごとにUIがバラバラで、使いづらく迷う</span></div>
+                            <div class="table-row"><span class="row-label">コスト</span><span class="row-val" style="color:#ef4444;">機能追加や拡張ですぐ有料プランへ誘導される</span></div>
+                            <div class="table-row"><span class="row-label">自由度</span><span class="row-val">テンプレートや決まった機能の枠から出られない</span></div>
                         </div>
                     </div>
                     <div class="graphic-card highlight">
                         <div class="card-headline" style="color:var(--color-primary-neon);"><i class="fa-solid fa-rocket"></i> AIコーディング×GitHub</div>
                         <div class="table-like-list">
-                            <div class="table-row"><span class="row-label">操作性</span><span class="row-val highlight-val">日本語で指示するだけ[cite: 5]</span></div>
-                            <div class="table-row"><span class="row-label">コスト</span><span class="row-val highlight-val">永続完全無料[cite: 5]</span></div>
-                            <div class="table-row"><span class="row-label">拡張性</span><span class="row-val highlight-val">データ連携など無限の自由度[cite: 5]</span></div>
+                            <div class="table-row"><span class="row-label">操作性</span><span class="row-val highlight-val">日本語で指示するだけ（完全直感操作）</span></div>
+                            <div class="table-row"><span class="row-label">コスト</span><span class="row-val highlight-val">永続完全無料（GitHub Pagesの利用も無料）</span></div>
+                            <div class="table-row"><span class="row-label">自由度</span><span class="row-val highlight-val">無限（API等を活用した高度なシステム開発も可能）</span></div>
                         </div>
                     </div>
                 </div>
@@ -475,22 +594,20 @@
             <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
         </section>
 
-        <!-- SLIDE 4: 手順と参考動画 (動画埋め込みエリア) -->
         <section class="section">
             <div class="container">
                 <span class="section-badge session1">Session 01 : LP作成ワーク</span>
                 <h1 class="slide-title">爆速公開への<span>ステップ＆参考動画</span></h1>
-                <p class="slide-lead">AIでコードを作り、GitHub Pagesへ保存して即座に世界へ公開する[cite: 5]。</p>
+                <p class="slide-lead">AIでコードを叩き出し、世界中のエンジニアが愛用するGitHub Pagesで即時公開。</p>
                 
                 <div class="slide-body">
                     <div class="table-like-list">
-                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 1</span><span class="row-val">AIに「推し」や「宣伝物」を伝えてコード生成[cite: 5]</span></div>
-                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 2</span><span class="row-val">Google経由等でGitHubアカウントと簡単連携[cite: 5]</span></div>
-                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 3</span><span class="row-val">「index.html」のファイル名でコードを貼付・保存[cite: 5]</span></div>
-                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 4</span><span class="row-val">SettingsからPages機能を main に変更して公開[cite: 5]</span></div>
+                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 1</span><span class="row-val">AIに「推し」や「宣伝したいもの」を伝えてコードを生成</span></div>
+                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 2</span><span class="row-val">Googleアカウントやメールを用いてGitHubにログイン連携</span></div>
+                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 3</span><span class="row-label">新規レポジトリを作成し、「index.html」という名でコードを貼付・保存</span></div>
+                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 4</span><span class="row-val">Settings内のPagesから main ブランチを選択。2分で世界公開！</span></div>
                     </div>
                     
-                    <!-- YouTube埋め込み -->
                     <div class="video-wrapper">
                         <iframe src="https://www.youtube.com/embed/ad7YWt9mqy4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
@@ -500,36 +617,33 @@
         </section>
 
 
-        <!-- ==================== SESSION 2 ==================== -->
-        <!-- SLIDE 5: セッション2 豊聡耳ワークとは -->
         <section class="section">
             <div class="container">
                 <span class="section-badge session2">Session 02 : 豊聡耳ワーク</span>
                 <h1 class="slide-title">本音をあぶり出す、<span>豊聡耳ワーク</span></h1>
-                <p class="slide-lead">地域のリアルな「喜怒哀楽」を抽出し、県を動かす政策の種をまく[cite: 5]。</p>
+                <p class="slide-lead">地域のリアルな「喜怒哀楽」を抽出し、県を動かす政策の種をまく。</p>
                 
                 <div class="slide-body">
                     <div class="graphic-card">
                         <div class="card-icon" style="color:var(--color-accent-purple);"><i class="fa-solid fa-microphone-lines"></i></div>
                         <div class="card-headline">議論の音声データ化</div>
-                        <p class="card-text">難しい資料作成や文字起こしは不要。スマホを置き、地域の現状と本音をただ自由に語り合うだけ[cite: 5]。</p>
+                        <p class="card-text">難しい資料作成や文字起こしは不要。スマホを置き、地域の現状と本音をただ自由に語り合うだけ。</p>
                     </div>
                     <div class="graphic-card purple-highlight">
                         <div class="card-icon" style="color:var(--color-accent-purple);"><i class="fa-solid fa-brain"></i></div>
                         <div class="card-headline">AIによる構造化</div>
-                        <p class="card-text">ざっくばらんな本音の会話から、最新AIが「真の課題・原因・解決の提言」を瞬時にあぶり出します[cite: 5]。</p>
+                        <p class="card-text">ざっくばらんな本音の会話から、最新AIが「真の課題・原因・解決の提言」を瞬時にあぶり出します。</p>
                     </div>
                 </div>
             </div>
             <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
         </section>
 
-        <!-- SLIDE 6: 豊聡耳ワーク 4ステップの流れ -->
         <section class="section">
             <div class="container">
                 <span class="section-badge session2">Session 02 : 豊聡耳ワーク</span>
                 <h1 class="slide-title">話して、流して、<span>形</span>にする4ステップ</h1>
-                <p class="slide-lead">先ほど学んだ「爆速LP」をそのまま発表資料・プラットフォームとして使う[cite: 5]。</p>
+                <p class="slide-lead">先ほど学んだ「爆速LP」をそのまま発表資料・プラットフォームとして使う。</p>
                 
                 <div class="slide-body full-width">
                     <div class="step-grid four-cols">
@@ -537,25 +651,25 @@
                             <div class="step-badge">1</div>
                             <div class="card-icon" style="color:var(--color-accent-purple);"><i class="fa-solid fa-comments"></i></div>
                             <div class="card-headline" style="font-size:16px;">グループ討議</div>
-                            <p class="card-text" style="font-size:13px; margin-top:5px;">地域ごとのグループに分かれ、地元の課題や想いをスマホで録音[cite: 5]</p>
+                            <p class="card-text" style="font-size:13px; margin-top:5px;">地域ごとのグループに分かれ、地元の課題や想いをスマホで録音</p>
                         </div>
                         <div class="step-box">
                             <div class="step-badge">2</div>
                             <div class="card-icon" style="color:var(--color-accent-purple);"><i class="fa-solid fa-file-audio"></i></div>
                             <div class="card-headline" style="font-size:16px;">AI分析</div>
-                            <p class="card-text" style="font-size:13px; margin-top:5px;">音声をAIに流し込み、要約・文章化を自動実行[cite: 5]</p>
+                            <p class="card-text" style="font-size:13px; margin-top:5px;">音声をAIに流し込み、要約・文章化を自動実行</p>
                         </div>
                         <div class="step-box">
                             <div class="step-badge">3</div>
                             <div class="card-icon" style="color:var(--color-accent-purple);"><i class="fa-solid fa-laptop-code"></i></div>
                             <div class="card-headline" style="font-size:16px;">即座にLP化</div>
-                            <p class="card-text" style="font-size:13px; margin-top:5px;">AIの文章をLPにコピペし、発表資料をその場で創る[cite: 5]</p>
+                            <p class="card-text" style="font-size:13px; margin-top:5px;">AIの文章をLPにコピペし、発表資料としてのWebサイトをその場で創る</p>
                         </div>
                         <div class="step-box" style="border-color:var(--color-primary-neon);">
                             <div class="step-badge">4</div>
                             <div class="card-icon" style="color:var(--color-primary-neon);"><i class="fa-solid fa-house-laptop"></i></div>
                             <div class="card-headline" style="font-size:16px;">地元へ持ち帰り</div>
-                            <p class="card-text" style="font-size:13px; margin-top:5px;">作ったページを地元組織に持ち帰り、共有・意見収集ツールとして活用[cite: 5]</p>
+                            <p class="card-text" style="font-size:13px; margin-top:5px;">作ったページを地元組織に持ち帰り、残りのメンバー（不参加者）への共有ツールに</p>
                         </div>
                     </div>
                 </div>
@@ -563,65 +677,63 @@
             <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
         </section>
 
-        <!-- SLIDE 7: 地域ごとの席分けの理由 -->
         <section class="section">
             <div class="container">
                 <span class="section-badge session2">Session 02 : 豊聡耳ワーク</span>
                 <h1 class="slide-title">なぜ今、<span>「地域ごと」</span>の席なのか？</h1>
-                <p class="slide-lead">震災一色の話題に埋もれさせない、各地域のリアルな課題を抽出するためのこだわり[cite: 5]。</p>
+                <p class="slide-lead">震災一色の話題に埋もれさせない、各地域のリアルな課題を抽出するためのこだわり。</p>
                 
                 <div class="slide-body">
                     <div class="graphic-card" style="opacity: 0.5;">
                         <div class="card-icon" style="color:#64748b;"><i class="fa-solid fa-people-arrows"></i></div>
                         <div class="card-headline">バラバラ（ミックス）の席</div>
-                        <p class="card-text">広い視点での意見は出るが、震災の話題だけに偏ってしまい、個々の地域特有の課題が見えにくくなる懸念[cite: 5]。</p>
+                        <p class="card-text">広い視点での意見は出るが、震災の話題だけに偏ってしまい、個々の地域特有の課題が見えにくくなる懸念。</p>
                     </div>
                     <div class="graphic-card purple-highlight" style="background:#fff;">
                         <div class="card-icon"><i class="fa-solid fa-map-location-dot"></i></div>
                         <div class="card-headline">地域ごとの席（今回採用）</div>
-                        <p class="card-text">「オラが村」のリアルな課題を徹底的に議論。自分の街に今すぐ直結する代表意見をシャープに生み出せる[cite: 5]。</p>
+                        <p class="card-text">「オラが村」のリアルな地域課題を深く議論。自分の街に今すぐ直結する代表意見をシャープに生み出しやすい。</p>
                     </div>
                 </div>
             </div>
             <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
         </section>
 
-        <!-- SLIDE 8: 400人の成果集約 -->
-        <section class="section">
-            <div class="container">
+        <section class="section" style="background: linear-gradient(135deg, #f8fafc, #f3e8ff);">
+            <div class="container" style="text-align: center;">
+                <span class="section-badge session2">Session 02 : 豊聡耳ワーク</span>
                 <div class="giant-display">400</div>
-                <h1 class="slide-title" style="font-size: clamp(24px, 3.2vw, 44px); text-align: center;">北から南まで、<span>400人の声</span>を1つに[cite: 5]。</h1>
-                <p class="slide-lead" style="max-width: 850px; margin: 2% auto 0; text-align: center; line-height: 1.8;">
-                    輪島・珠洲から加賀まで[cite: 5]。参加する50人は400人の代表者です[cite: 5]。<br>
-                    あなたが持ち帰る1枚のLPが組織を繋ぎ、未参加の仲間のリアルな声を拾い上げる最大の受け皿になります[cite: 5]。
+                <h1 class="slide-title" style="font-size: clamp(24px, 3.2vw, 44px);">北から南まで、<span>400人の声</span>を1つに。</h1>
+                <p class="slide-lead" style="max-width: 900px; margin: 2% auto 0; line-height: 1.8;">
+                    輪島・珠洲から加賀まで。参加する50人は400人の代表者です。<br>
+                    持ち帰ったLPに「意見集約フォーム」を設置することで、未参加メンバーの声をすべて吸い上げ、バラバラな地域課題をAIで統合。「オール石川」としての1つの壮大なテーマを生み出します。
                 </p>
             </div>
             <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
         </section>
 
-        <!-- SLIDE 9: 風会議へのロードマップ -->
         <section class="section">
             <div class="container">
                 <span class="section-badge session2">Session 02 : 豊聡耳ワーク</span>
                 <h1 class="slide-title">3ヶ月後の<span>「風会議」</span>へのロードマップ</h1>
-                <p class="slide-lead">今日作る「提言の種」が、11月に県庁職員との直接ディスカッションへ繋がる[cite: 5]。</p>
+                <p class="slide-lead">今日作る「提言の種」が、11月に県庁職員との直接ディスカッションへ繋がる。</p>
                 
                 <div class="slide-body full-width">
                     <div class="timeline-grid">
                         <div class="timeline-box">
                             <div class="timeline-phase">Phase 01 | 今日</div>
                             <div class="card-headline" style="font-size:18px; margin-bottom:8px;"><i class="fa-solid fa-laptop-code"></i> テック研修</div>
-                            <p class="card-text" style="font-size:13px;">AI×HTMLスキルを習得。本音を可視化するLPの土台を構築[cite: 5]。</p>
+                            <p class="card-text" style="font-size:13px;">AI×HTMLスキルを習得。本音を可視化するLPの土台を構築。</p>
                         </div>
                         <div class="timeline-box">
                             <div class="timeline-phase">Phase 02 | 8月〜10月</div>
                             <div class="card-headline" style="font-size:18px; margin-bottom:8px;"><i class="fa-solid fa-people-group"></i> 声の統合</div>
-                            <p class="card-text" style="font-size:13px;">持ち帰ったLPで各自地元で意見収集。400名の課題をAIで精査・統合[cite: 5]。</p>
+                            <p class="card-text" style="font-size:13px;">持ち帰ったLPを活用し、400名の課題や声をAIで一挙に精査・統合。</p>
                         </div>
                         <div class="timeline-box active">
                             <div class="timeline-phase">Phase 03 | 11月</div>
                             <div class="card-headline" style="font-size:18px; margin-bottom:8px; color:var(--color-primary-neon);"><i class="fa-solid fa-gavel"></i> 風会議（本番）</div>
-                            <p class="card-text" style="font-size:13px;">集まった確固たるデータを持って、県庁職員と直接対話。解決案を模索[cite: 5]！</p>
+                            <p class="card-text" style="font-size:13px;">県庁職員と直接グループワークを行い、地域課題の具体的な解決策を提言・模索！</p>
                         </div>
                     </div>
                 </div>
@@ -630,7 +742,6 @@
 
     </div>
 
-    <!-- スクロール量を微調整してピタッと吸着させる制御JS -->
     <script>
         const container = document.getElementById('main-scroll');
         let isScrolling = false;
