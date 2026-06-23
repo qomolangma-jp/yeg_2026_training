@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>石川県連YEG研修事業 | AI実務成果物作成ワークショップ</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- デザインルール定義 --- */
+        :root {
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-primary-neon: #10b981;
+            --color-secondary-neon: #3b82f6;
+            --color-accent-purple: #8b5cf6;
+            --color-text-main: #0f172a;
+            --color-text-sub: #334155;
+            --font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0f172a; /* 背景外枠は暗転 */
+            color: var(--color-text-main);
+            font-family: var(--font-family);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 縦スクロールスナップ用コンテナ */
+        .scroll-container {
+            width: 100vw;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+
+        /* 各セクションのベース設定（1画面に綺麗に収める） */
+        .section {
+            width: 100%;
+            height: 100vh;
+            min-height: 100vh;
+            padding: 4% 6%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            background: var(--color-bg);
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* タイポグラフィ */
+        .section-badge {
+            display: inline-block;
+            font-size: clamp(12px, 1.1vw, 16px);
+            font-weight: 900;
+            padding: 6px 16px;
+            background: rgba(15, 23, 42, 0.05);
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            color: var(--color-text-sub);
+            border-radius: 100px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .section-badge.session1 {
+            background: rgba(16, 185, 129, 0.08);
+            border-color: rgba(16, 185, 129, 0.2);
+            color: var(--color-primary-neon);
+        }
+
+        .section-badge.session2 {
+            background: rgba(139, 92, 246, 0.08);
+            border-color: rgba(139, 92, 246, 0.2);
+            color: var(--color-accent-purple);
+        }
+
+        .slide-title {
+            font-size: clamp(32px, 4.2vw, 60px);
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            color: var(--color-text-main);
+        }
+
+        .slide-title span {
+            background: linear-gradient(135deg, var(--color-primary-neon), var(--color-secondary-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide-title span.purple {
+            background: linear-gradient(135deg, var(--color-accent-purple), var(--color-secondary-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide-lead {
+            font-size: clamp(16px, 1.8vw, 24px);
+            font-weight: 700;
+            color: var(--color-text-sub);
+            margin-top: 1%;
+            line-height: 1.4;
+        }
+
+        /* 2カラム配置 */
+        .slide-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5%;
+            align-items: center;
+            margin-top: 3%;
+        }
+
+        .slide-body.full-width {
+            grid-template-columns: 1fr;
+            text-align: center;
+            justify-content: center;
+        }
+
+        /* グラフィックカード */
+        .graphic-card {
+            background: var(--color-surface);
+            border: 2px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 5% 6%;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.03);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .graphic-card.highlight {
+            border-color: var(--color-primary-neon);
+            box-shadow: 0 20px 45px rgba(16, 185, 129, 0.1);
+        }
+
+        .graphic-card.purple-highlight {
+            border-color: var(--color-accent-purple);
+            box-shadow: 0 20px 45px rgba(139, 92, 246, 0.1);
+        }
+
+        .card-icon {
+            font-size: clamp(36px, 4.5vw, 64px);
+            color: var(--color-primary-neon);
+            margin-bottom: 3%;
+        }
+
+        .card-headline {
+            font-size: clamp(20px, 2.2vw, 30px);
+            font-weight: 900;
+            margin-bottom: 2%;
+        }
+
+        .card-text {
+            font-size: clamp(14px, 1.4vw, 18px);
+            color: var(--color-text-sub);
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        /* リストスタイル */
+        .graphic-list {
+            list-style: none;
+        }
+
+        .graphic-list li {
+            font-size: clamp(14px, 1.5vw, 22px);
+            font-weight: 700;
+            margin-bottom: 4%;
+            display: flex;
+            align-items: center;
+            gap: 4%;
+        }
+
+        .wrong { color: #ef4444; }
+        .correct { color: #10b981; }
+
+        /* テーブル風リスト */
+        .table-like-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .table-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: clamp(14px, 1.4vw, 18px);
+            font-weight: 700;
+        }
+
+        .table-row:last-child { border: none; }
+        .row-label { color: var(--color-text-sub); }
+        .row-val { color: var(--color-text-main); text-align: right; }
+        .highlight-val { color: var(--color-primary-neon); }
+
+        /* グリッド配置 */
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4%;
+            width: 100%;
+            margin-top: 3%;
+        }
+
+        .step-grid.four-cols {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .step-box {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 6% 4%;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-box.active {
+            border-color: var(--color-secondary-neon);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.1);
+        }
+
+        .step-badge {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary-neon), var(--color-secondary-neon));
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* 動画埋め込みエリア */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 2px solid #e2e8f0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 巨大数字インフォグラフィック */
+        .giant-display {
+            font-size: clamp(100px, 14vw, 220px);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-secondary-neon) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -4px;
+            margin-bottom: 2%;
+        }
+
+        /* タイムライン */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4%;
+            width: 100%;
+            margin-top: 4%;
+        }
+
+        .timeline-box {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 6% 6%;
+            position: relative;
+        }
+
+        .timeline-box.active {
+            border-color: var(--color-primary-neon);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.1);
+        }
+
+        .timeline-phase {
+            font-size: clamp(12px, 1.2vw, 16px);
+            font-weight: 900;
+            color: var(--color-accent-purple);
+            margin-bottom: 5px;
+        }
+        .timeline-box.active .timeline-phase {
+            color: var(--color-primary-neon);
+        }
+
+        /* インジケーター・ナビ */
+        .scroll-hint {
+            position: absolute;
+            bottom: 3%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: var(--color-primary-neon);
+            animation: bounce 2s infinite;
+            opacity: 0.6;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+            40% { transform: translate(-50%, -10px); }
+            60% { transform: translate(-50%, -5px); }
+        }
+
+        /* --- 📱 レスポンシブ対応 (スマホ・タブレット表示用の最適化) --- */
+        @media (max-width: 991px) {
+            .scroll-container {
+                overflow-y: auto;
+                scroll-snap-type: none; /* スマホでは通常スクロール */
+                height: auto;
+            }
+
+            .section {
+                height: auto;
+                min-height: auto;
+                padding: 60px 20px;
+                scroll-snap-align: none;
+            }
+
+            .slide-body {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .step-grid, .step-grid.four-cols, .timeline-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .step-box, .timeline-box {
+                padding: 30px 20px;
+            }
+
+            .scroll-hint {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-container" id="main-scroll">
+
+        <!-- ==================== INTRO ==================== -->
+        <!-- SLIDE 1: 目的 -->
+        <section class="section">
+            <div class="container">
+                <span class="section-badge">研修目的の共有</span>
+                <h1 class="slide-title">AIを学ぶな、<span>成果</span>を作れ。</h1>
+                <p class="slide-lead">お勉強はゼロ。今日、実務で今すぐ動く武器を持ち帰る[cite: 5]。</p>
+                
+                <div class="slide-body">
+                    <div class="graphic-card" style="opacity: 0.5;">
+                        <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <div class="card-headline">座学・お勉強</div>
+                        <p class="card-text">仕組みや単語を覚えるだけで、実務に繋がらない従来の研修[cite: 5]</p>
+                    </div>
+                    <div class="graphic-card highlight">
+                        <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="card-headline">本日のゴール</div>
+                        <p class="card-text">AIを道具としてぶん回し、今日この場で自社・地域の「ホームページ（LP）」を1枚完成させる[cite: 5]</p>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
+
+
+        <!-- ==================== SESSION 1 ==================== -->
+        <!-- SLIDE 2: なぜあえてHTMLか -->
+        <section class="section">
+            <div class="container">
+                <span class="section-badge session1">Session 01 : LP作成ワーク</span>
+                <h1 class="slide-title">なぜ今、あえて<span>HTML</span>なのか？</h1>
+                <p class="slide-lead">アプリのルールに縛られない、世界共通の「デジタル文字板」[cite: 5]</p>
+                
+                <div class="slide-body">
+                    <div class="graphic-card">
+                        <div class="card-headline wrong"><i class="fa-solid fa-triangle-exclamation"></i> SNS・チラシの限界</div>
+                        <ul class="graphic-list">
+                            <li class="wrong"><i class="fa-solid fa-xmark"></i> アカウントがないと見られない[cite: 5]</li>
+                            <li class="wrong"><i class="fa-solid fa-xmark"></i> 情報が流れて消えてしまう[cite: 5]</li>
+                            <li class="wrong"><i class="fa-solid fa-xmark"></i> 外国人へ言葉が伝わらない[cite: 5]</li>
+                        </ul>
+                    </div>
+                    <div class="graphic-card highlight">
+                        <div class="card-headline correct"><i class="fa-solid fa-globe"></i> 世界共通規格 HTML</div>
+                        <ul class="graphic-list">
+                            <li class="correct"><i class="fa-solid fa-check"></i> ネットがあれば誰でも一発閲覧[cite: 5]</li>
+                            <li class="correct"><i class="fa-solid fa-check"></i> スマホ機能で「自動翻訳」される[cite: 5]</li>
+                            <li class="correct"><i class="fa-solid fa-check"></i> 1文字 of 修正・変更が1秒で完了[cite: 5]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
+
+        <!-- SLIDE 3: ノーコードとの違い -->
+        <section class="section">
+            <div class="container">
+                <span class="section-badge session1">Session 01 : LP作成ワーク</span>
+                <h1 class="slide-title">依存の「作業」から、自立の<span>開発</span>へ</h1>
+                <p class="slide-lead">ノーコードの枠を飛び越え、完全無料・無限の自由度を手に入れる[cite: 5]。</p>
+                
+                <div class="slide-body">
+                    <div class="graphic-card">
+                        <div class="card-headline" style="color:#ef4444;"><i class="fa-solid fa-ban"></i> ノーコードツールの罠</div>
+                        <div class="table-like-list">
+                            <div class="table-row"><span class="row-label">操作性</span><span class="row-val">企業ごとにUIが異なり、迷う[cite: 5]</span></div>
+                            <div class="table-row"><span class="row-label">コスト</span><span class="row-val" style="color:#ef4444;">機能追加で有料プランへ誘導[cite: 5]</span></div>
+                            <div class="table-row"><span class="row-label">拡張性</span><span class="row-val">テンプレートの枠から出られない[cite: 5]</span></div>
+                        </div>
+                    </div>
+                    <div class="graphic-card highlight">
+                        <div class="card-headline" style="color:var(--color-primary-neon);"><i class="fa-solid fa-rocket"></i> AIコーディング×GitHub</div>
+                        <div class="table-like-list">
+                            <div class="table-row"><span class="row-label">操作性</span><span class="row-val highlight-val">日本語で指示するだけ[cite: 5]</span></div>
+                            <div class="table-row"><span class="row-label">コスト</span><span class="row-val highlight-val">永続完全無料[cite: 5]</span></div>
+                            <div class="table-row"><span class="row-label">拡張性</span><span class="row-val highlight-val">データ連携など無限の自由度[cite: 5]</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
+
+        <!-- SLIDE 4: 手順と参考動画 (動画埋め込みエリア) -->
+        <section class="section">
+            <div class="container">
+                <span class="section-badge session1">Session 01 : LP作成ワーク</span>
+                <h1 class="slide-title">爆速公開への<span>ステップ＆参考動画</span></h1>
+                <p class="slide-lead">AIでコードを作り、GitHub Pagesへ保存して即座に世界へ公開する[cite: 5]。</p>
+                
+                <div class="slide-body">
+                    <div class="table-like-list">
+                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 1</span><span class="row-val">AIに「推し」や「宣伝物」を伝えてコード生成[cite: 5]</span></div>
+                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 2</span><span class="row-val">Google経由等でGitHubアカウントと簡単連携[cite: 5]</span></div>
+                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 3</span><span class="row-val">「index.html」のファイル名でコードを貼付・保存[cite: 5]</span></div>
+                        <div class="table-row"><span class="row-label" style="color:var(--color-primary-neon);">STEP 4</span><span class="row-val">SettingsからPages機能を main に変更して公開[cite: 5]</span></div>
+                    </div>
+                    
+                    <!-- YouTube埋め込み -->
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/ad7YWt9mqy4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
+
+
+        <!-- ==================== SESSION 2 ==================== -->
+        <!-- SLIDE 5: セッション2 豊聡耳ワークとは -->
+        <section class="section">
+            <div class="container">
+                <span class="section-badge session2">Session 02 : 豊聡耳ワーク</span>
+                <h1 class="slide-title">本音をあぶり出す、<span>豊聡耳ワーク</span></h1>
+                <p class="slide-lead">地域のリアルな「喜怒哀楽」を抽出し、県を動かす政策の種をまく[cite: 5]。</p>
+                
+                <div class="slide-body">
+                    <div class="graphic-card">
+                        <div class="card-icon" style="color:var(--color-accent-purple);"><i class="fa-solid fa-microphone-lines"></i></div>
+                        <div class="card-headline">議論の音声データ化</div>
+                        <p class="card-text">難しい資料作成や文字起こしは不要。スマホを置き、地域の現状と本音をただ自由に語り合うだけ[cite: 5]。</p>
+                    </div>
+                    <div class="graphic-card purple-highlight">
+                        <div class="card-icon" style="color:var(--color-accent-purple);"><i class="fa-solid fa-brain"></i></div>
+                        <div class="card-headline">AIによる構造化</div>
+                        <p class="card-text">ざっくばらんな本音の会話から、最新AIが「真の課題・原因・解決の提言」を瞬時にあぶり出します[cite: 5]。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
+
+        <!-- SLIDE 6: 豊聡耳ワーク 4ステップの流れ -->
+        <section class="section">
+            <div class="container">
+                <span class="section-badge session2">Session 02 : 豊聡耳ワーク</span>
+                <h1 class="slide-title">話して、流して、<span>形</span>にする4ステップ</h1>
+                <p class="slide-lead">先ほど学んだ「爆速LP」をそのまま発表資料・プラットフォームとして使う[cite: 5]。</p>
+                
+                <div class="slide-body full-width">
+                    <div class="step-grid four-cols">
+                        <div class="step-box">
+                            <div class="step-badge">1</div>
+                            <div class="card-icon" style="color:var(--color-accent-purple);"><i class="fa-solid fa-comments"></i></div>
+                            <div class="card-headline" style="font-size:16px;">グループ討議</div>
+                            <p class="card-text" style="font-size:13px; margin-top:5px;">地域ごとのグループに分かれ、地元の課題や想いをスマホで録音[cite: 5]</p>
+                        </div>
+                        <div class="step-box">
+                            <div class="step-badge">2</div>
+                            <div class="card-icon" style="color:var(--color-accent-purple);"><i class="fa-solid fa-file-audio"></i></div>
+                            <div class="card-headline" style="font-size:16px;">AI分析</div>
+                            <p class="card-text" style="font-size:13px; margin-top:5px;">音声をAIに流し込み、要約・文章化を自動実行[cite: 5]</p>
+                        </div>
+                        <div class="step-box">
+                            <div class="step-badge">3</div>
+                            <div class="card-icon" style="color:var(--color-accent-purple);"><i class="fa-solid fa-laptop-code"></i></div>
+                            <div class="card-headline" style="font-size:16px;">即座にLP化</div>
+                            <p class="card-text" style="font-size:13px; margin-top:5px;">AIの文章をLPにコピペし、発表資料をその場で創る[cite: 5]</p>
+                        </div>
+                        <div class="step-box" style="border-color:var(--color-primary-neon);">
+                            <div class="step-badge">4</div>
+                            <div class="card-icon" style="color:var(--color-primary-neon);"><i class="fa-solid fa-house-laptop"></i></div>
+                            <div class="card-headline" style="font-size:16px;">地元へ持ち帰り</div>
+                            <p class="card-text" style="font-size:13px; margin-top:5px;">作ったページを地元組織に持ち帰り、共有・意見収集ツールとして活用[cite: 5]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
+
+        <!-- SLIDE 7: 地域ごとの席分けの理由 -->
+        <section class="section">
+            <div class="container">
+                <span class="section-badge session2">Session 02 : 豊聡耳ワーク</span>
+                <h1 class="slide-title">なぜ今、<span>「地域ごと」</span>の席なのか？</h1>
+                <p class="slide-lead">震災一色の話題に埋もれさせない、各地域のリアルな課題を抽出するためのこだわり[cite: 5]。</p>
+                
+                <div class="slide-body">
+                    <div class="graphic-card" style="opacity: 0.5;">
+                        <div class="card-icon" style="color:#64748b;"><i class="fa-solid fa-people-arrows"></i></div>
+                        <div class="card-headline">バラバラ（ミックス）の席</div>
+                        <p class="card-text">広い視点での意見は出るが、震災の話題だけに偏ってしまい、個々の地域特有の課題が見えにくくなる懸念[cite: 5]。</p>
+                    </div>
+                    <div class="graphic-card purple-highlight" style="background:#fff;">
+                        <div class="card-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                        <div class="card-headline">地域ごとの席（今回採用）</div>
+                        <p class="card-text">「オラが村」のリアルな課題を徹底的に議論。自分の街に今すぐ直結する代表意見をシャープに生み出せる[cite: 5]。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
+
+        <!-- SLIDE 8: 400人の成果集約 -->
+        <section class="section">
+            <div class="container">
+                <div class="giant-display">400</div>
+                <h1 class="slide-title" style="font-size: clamp(24px, 3.2vw, 44px); text-align: center;">北から南まで、<span>400人の声</span>を1つに[cite: 5]。</h1>
+                <p class="slide-lead" style="max-width: 850px; margin: 2% auto 0; text-align: center; line-height: 1.8;">
+                    輪島・珠洲から加賀まで[cite: 5]。参加する50人は400人の代表者です[cite: 5]。<br>
+                    あなたが持ち帰る1枚のLPが組織を繋ぎ、未参加の仲間のリアルな声を拾い上げる最大の受け皿になります[cite: 5]。
+                </p>
+            </div>
+            <div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+        </section>
+
+        <!-- SLIDE 9: 風会議へのロードマップ -->
+        <section class="section">
+            <div class="container">
+                <span class="section-badge session2">Session 02 : 豊聡耳ワーク</span>
+                <h1 class="slide-title">3ヶ月後の<span>「風会議」</span>へのロードマップ</h1>
+                <p class="slide-lead">今日作る「提言の種」が、11月に県庁職員との直接ディスカッションへ繋がる[cite: 5]。</p>
+                
+                <div class="slide-body full-width">
+                    <div class="timeline-grid">
+                        <div class="timeline-box">
+                            <div class="timeline-phase">Phase 01 | 今日</div>
+                            <div class="card-headline" style="font-size:18px; margin-bottom:8px;"><i class="fa-solid fa-laptop-code"></i> テック研修</div>
+                            <p class="card-text" style="font-size:13px;">AI×HTMLスキルを習得。本音を可視化するLPの土台を構築[cite: 5]。</p>
+                        </div>
+                        <div class="timeline-box">
+                            <div class="timeline-phase">Phase 02 | 8月〜10月</div>
+                            <div class="card-headline" style="font-size:18px; margin-bottom:8px;"><i class="fa-solid fa-people-group"></i> 声の統合</div>
+                            <p class="card-text" style="font-size:13px;">持ち帰ったLPで各自地元で意見収集。400名の課題をAIで精査・統合[cite: 5]。</p>
+                        </div>
+                        <div class="timeline-box active">
+                            <div class="timeline-phase">Phase 03 | 11月</div>
+                            <div class="card-headline" style="font-size:18px; margin-bottom:8px; color:var(--color-primary-neon);"><i class="fa-solid fa-gavel"></i> 風会議（本番）</div>
+                            <p class="card-text" style="font-size:13px;">集まった確固たるデータを持って、県庁職員と直接対話。解決案を模索[cite: 5]！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- スクロール量を微調整してピタッと吸着させる制御JS -->
+    <script>
+        const container = document.getElementById('main-scroll');
+        let isScrolling = false;
+
+        container.addEventListener('wheel', (e) => {
+            // スマホや1000px未満のブレイクポイントではスナップ制御をバイパス
+            if (window.innerWidth < 992) return;
+
+            e.preventDefault();
+            if (isScrolling) return;
+
+            const sections = document.querySelectorAll('.section');
+            let currentIndex = 0;
+            
+            // 現在表示されているセクションのインデックスを特定
+            const scrollTop = container.scrollTop;
+            const h = window.innerHeight;
+            currentIndex = Math.round(scrollTop / h);
+
+            if (e.deltaY > 0) {
+                // 下へスクロール
+                if (currentIndex < sections.length - 1) {
+                    isScrolling = true;
+                    container.scrollTo({
+                        top: (currentIndex + 1) * h,
+                        behavior: 'smooth'
+                    });
+                }
+            } else {
+                // 上へスクロール
+                if (currentIndex > 0) {
+                    isScrolling = true;
+                    container.scrollTo({
+                        top: (currentIndex - 1) * h,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            // アニメーション完了後にロックを解除
+            setTimeout(() => {
+                isScrolling = false;
+            }, 600); 
+        }, { passive: false });
+
+        // リサイズ時にスクロール位置を再計算してズレを防止
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 992) {
+                const scrollTop = container.scrollTop;
+                const h = window.innerHeight;
+                const currentIndex = Math.round(scrollTop / h);
+                container.scrollTop = currentIndex * h;
+            }
+        });
+    </script>
+</body>
+</html>
