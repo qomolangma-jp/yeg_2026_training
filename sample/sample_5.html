@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>どんどん祭り 2025 | Cinematic Transition</title>
+    <style>
+        /* ==========================================================================
+           1. デザインシステム & 基本設定
+           ========================================================================== */
+        :root {
+            --color-bg-dark: #0a0b10;
+            --color-text-white: #ffffff;
+            --color-text-muted: #aaaaaa;
+            --color-gold: #cca43b;          /* シネマティックなゴールドのアクセント */
+            --font-serif: 'Times New Roman', 'YuMincho', '游明朝', 'Hiragino Mincho ProN', serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-white);
+            font-family: var(--font-sans);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           2. フルスクリーン・シネマティック変形（キーコンセプト）
+           ========================================================================== */
+        
+        /* スクロールを促すためのコンテナ（1画面分の高さ） */
+        .intro-gate {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: var(--color-bg-dark);
+        }
+
+        /* 最初は小さな正方形の窓 ➔ 画面全体へ拡大する映画のようなメインビジュアル */
+        .cinematic-window {
+            position: absolute;
+            width: 280px;  /* 初期状態の小さな正方形 */
+            height: 280px;
+            border-radius: 8px;
+            background-image: linear-gradient(rgba(10, 11, 16, 0.4), rgba(10, 11, 16, 0.7)), 
+                              url('https://images.unsplash.com/photo-1542640244-7e672d6cef21?q=80&w=2070&auto=format&fit=crop'); /* お祭りの熱気と伝統を予感させるビジュアル */
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            
+            /* アニメーション：小さな窓からフルスクリーンへ劇的ズームイン */
+            animation: zoomToFullscreen linear both;
+            animation-timeline: view();
+            animation-range: exit 0% exit 100%;
+            z-index: 1;
+        }
+
+        /* 画面から見えなくなる（スクロールアウトする）につれて、スケールをマクロ（巨大化）にする */
+        @keyframes zoomToFullscreen {
+            to {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0px;
+                transform: scale(3.5); /* 視界を覆い尽くすほどの超拡大 */
+                opacity: 0.15;        /* 次のコンテンツの邪魔をしないように背景へ溶け込ませる */
+            }
+        }
+
+        /* ファーストビューの中央テキスト（窓の前に浮き出る） */
+        .intro-overlay-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .intro-title {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            line-height: 1.3;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+            margin-bottom: 20px;
+        }
+
+        .intro-lead {
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        .scroll-indicator {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--color-text-muted);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(6px); }
+        }
+
+        /* ==========================================================================
+           3. メインコンテンツ（ズームインした後に展開する叙情的なレイアウト）
+           ========================================================================== */
+        
+        .main-content {
+            position: relative;
+            z-index: 3;
+            background-color: var(--color-bg-dark);
+            padding-top: 60px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .editorial-section {
+            padding: 120px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--color-gold);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+        }
+
+        /* ストーリー記述 */
+        .story-text {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: #dddddd;
+            max-width: 800px;
+            text-align: justify;
+        }
+
+        /* シネマティック・グリッド（出し物の一覧） */
+        .cinema-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .cinema-card {
+            border-left: 2px solid var(--color-gold);
+            padding-left: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card-num {
+            font-size: 0.8rem;
+            color: var(--color-gold);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        /* 概要一覧（スペック） */
+        .spec-list {
+            list-style: none;
+            max-width: 800px;
+        }
+
+        .spec-item {
+            display: flex;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .spec-label {
+            width: 30%;
+            font-family: var(--font-serif);
+            color: var(--color-gold);
+            font-size: 1.05rem;
+        }
+
+        .spec-value {
+            width: 70%;
+            font-size: 1rem;
+            color: #eeeeee;
+        }
+
+        /* 映画のクレジット風フッター */
+        footer {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            letter-spacing: 0.4em;
+            margin-bottom: 16px;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: #555555;
+            letter-spacing: 0.1em;
+        }
+
+        /* ==========================================================================
+           4. レスポンシブ対応
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .intro-title { font-size: 2.2rem; }
+            .cinematic-window { width: 200px; height: 200px; }
+            @keyframes zoomToFullscreen {
+                to { transform: scale(5); opacity: 0.12; }
+            }
+            .section-title { font-size: 1.7rem; }
+            .cinema-grid { grid-template-columns: 1fr; gap: 30px; }
+            .spec-item { flex-direction: column; }
+            .spec-label { width: 100%; margin-bottom: 6px; }
+            .spec-value { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="intro-gate">
+        
+        <div class="cinematic-window" aria-hidden="true"></div>
+        
+        <div class="intro-overlay-text">
+            <p class="intro-lead">50th Autumn Gathering</p>
+            <h1 class="intro-title">記憶の幕が、<br>静かに上がる。</h1>
+            <p class="scroll-indicator">▼ スクロールで物語を展開する</p>
+        </div>
+
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+
+            <section class="editorial-section">
+                <div class="section-header">
+                    <span class="section-label">Prologue</span>
+                    <h2 class="section-title">どんどん祭り 2025</h2>
+                </div>
+                <p class="story-text">
+                    石川県小松市で約50年にわたり脈々と受け継がれてきた商業的な祭事、それが「どんどん祭り」です。歴史という名のスクリーンに映し出されるのは、地域を愛する人々の笑顔と、時代を超えて響き合う熱狂の系譜。半世紀の節目を迎える今年、私たちは伝統の灯火を胸に、まだ見ぬ新しい幕開けの瞬間を静かに迎えます。
+                </p>
+            </section>
+
+            <section class="editorial-section">
+                <div class="section-header">
+                    <span class="section-label">The Scenes</span>
+                    <h2 class="section-title">心を揺さぶる、6つの演目</h2>
+                </div>
+                
+                <div class="cinema-grid">
+                    <div class="cinema-card">
+                        <span class="card-num">SCENE 01</span>
+                        <h3 class="card-title">輪島キリコ展示</h3>
+                        <p class="card-desc">能登の大地に根ざした荘厳な伝統造形「キリコ」が小松に特別降臨。闇夜に浮かび上がる圧倒的なスケールと職人たちの魂をその目に焼き付けてください。</p>
+                    </div>
+                    <div class="cinema-card">
+                        <span class="card-num">SCENE 02</span>
+                        <h3 class="card-title">行燈行列</h3>
+                        <p class="card-desc">優しく、どこかノスタルジックな陰影を落とす行燈（あんどん）のパレード。無数の温かい光の粒が、秋の街並みを情緒豊かに染め上げます。</p>
+                    </div>
+                    <div class="cinema-card">
+                        <span class="card-num">SCENE 03</span>
+                        <h3 class="card-title">DJコーによるライブ</h3>
+                        <p class="card-desc">スペシャルゲストとしてシーンの重鎮「DJコー」が登壇。洗練された現代のグルーヴを解き放ち、会場を一瞬にして歓喜の渦へと誘います。</p>
+                    </div>
+                    <div class="cinema-card">
+                        <span class="card-num">SCENE 04</span>
+                        <h3 class="card-title">ダンスイベント</h3>
+                        <p class="card-desc">溢れんばかりのパッションと磨き上げられた肉体が躍動するステージ。一瞬一瞬にかけられた表現者たちの静かな熱量が火花を散らします。</p>
+                    </div>
+                    <div class="cinema-card">
+                        <span class="card-num">SCENE 05</span>
+                        <h3 class="card-title">キッチンカー ＆ 縁日</h3>
+                        <p class="card-desc">こだわり抜かれた食を届けるモダンなキッチンカーエリアと、どこか懐かしく情緒に満ちた縁日。五感すべてで大人の味覚を満たします。</p>
+                    </div>
+                    <div class="cinema-card">
+                        <span class="card-num">SCENE 06</span>
+                        <h3 class="card-title">ステージパフォーマンス</h3>
+                        <p class="card-desc">多彩な表現者たちが代わる代わる物語を紡ぐ、2日間の特設メインステージ。どこを切り取ってもクライマックスのような時間が流れます。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="editorial-section" style="border-bottom: none;">
+                <div class="section-header">
+                    <span class="section-label">Information</span>
+                    <h2 class="section-title">公演・開催概要</h2>
+                </div>
+                
+                <ul class="spec-list">
+                    <li class="spec-item">
+                        <div class="spec-label">祭事名称</div>
+                        <div class="spec-value">どんどん祭り</div>
+                    </li>
+                    <li class="spec-item">
+                        <div class="spec-label">開催会期</div>
+                        <div class="spec-value">2025年10月11日（土） 〜 10月12日（日）</div>
+                    </li>
+                    <li class="spec-item">
+                        <div class="spec-label">開催場所</div>
+                        <div class="spec-value">石川県小松市 ・ 小松駅前 特設会場</div>
+                    </li>
+                    <li class="spec-item">
+                        <div class="spec-label">作品背景</div>
+                        <div class="spec-value">小松の経済と文化的アイデンティティを約50年にわたり支え続けてきた、地域最大級の商業祭事。</div>
+                    </li>
+                </ul>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-brand">DONDON MATSURI 2025</div>
+            <p class="copyright">&copy; 2025 Dondon Matsuri Executive Committee. Architected for Cinematic Inspiration.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

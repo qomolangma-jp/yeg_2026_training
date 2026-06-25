@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>どんどん祭り 2025 | Premium Festival Experience</title>
+    <style>
+        /* ==========================================================================
+           1. デザインシステム & 変数（プレミアムSaaS・ミニマリズム）
+           ========================================================================== */
+        :root {
+            --color-navy-dark: #060b19;
+            --color-navy-main: #0a1128;
+            --color-navy-light: #1c2541;
+            --color-white: #ffffff;
+            --color-cyan-accent: #00f0ff; /* ブライトアクセントカラー：シアン */
+            --color-text-muted: #8fa0c4;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-navy-dark);
+            color: var(--color-white);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ==========================================================================
+           2. レイアウト構造（ヒーローセクション）
+           ========================================================================== */
+        .hero-container {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            padding: 0 8%;
+            gap: 60px;
+            position: relative;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 240, 255, 0.05), transparent 50%);
+        }
+
+        /* ミニマルナビゲーションバー */
+        .nav-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-white);
+        }
+
+        .logo span {
+            color: var(--color-cyan-accent);
+        }
+
+        /* ==========================================================================
+           3. 左カラム：ボールドタイポグラフィ & インパクトのある見出し
+           ========================================================================== */
+        .hero-content {
+            max-width: 640px;
+            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: var(--color-cyan-accent);
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .headline {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 28px;
+            color: var(--color-white);
+        }
+
+        .headline span {
+            background: linear-gradient(135deg, #ffffff 30%, var(--color-cyan-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            font-size: 1.05rem;
+            color: var(--color-text-muted);
+            margin-bottom: 48px;
+            max-width: 540px;
+            font-weight: 400;
+        }
+
+        /* 洗練されたプレミアムCTAボタン */
+        .cta-group {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--color-white);
+            color: var(--color-navy-dark);
+            padding: 18px 38px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 30px rgba(0, 240, 255, 0.15);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-cyan-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 240, 255, 0.3);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            color: var(--color-white);
+            padding: 18px 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            color: var(--color-cyan-accent);
+        }
+
+        /* ==========================================================================
+           4. 右カラム：高品質な3D抽象グラフィック（8k/フォトリアル・トレンド）
+           ========================================================================== */
+        .hero-graphic-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 600px;
+            animation: floatAnimation 6s ease-in-out infinite;
+        }
+
+        /* 3Dガラス＆グラデーション球体オブジェクト */
+        .abstract-3d-sphere {
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffffff 0%, #1e3a8a 40%, var(--color-navy-dark) 85%);
+            box-shadow: 
+                -20px -20px 60px rgba(255, 255, 255, 0.08),
+                30px 30px 80px rgba(0, 0, 0, 0.8),
+                inset -10px -10px 40px rgba(0, 0, 0, 0.7),
+                inset 20px 20px 50px rgba(255, 255, 255, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        .glass-panel {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 12px;
+            z-index: 3;
+            transform: rotate(-12deg) translate(-50px, 30px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .accent-ring {
+            position: absolute;
+            width: 480px;
+            height: 480px;
+            border: 1px dashed rgba(0, 240, 255, 0.2);
+            border-radius: 50%;
+            z-index: 1;
+            transform: rotateX(65deg) rotateY(-15deg);
+        }
+
+        /* ==========================================================================
+           5. セクション構成（コンテンツエリア）
+           ========================================================================== */
+        .section-container {
+            padding: 140px 8%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: var(--color-navy-main);
+        }
+
+        .section-header {
+            max-width: 600px;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            margin-bottom: 20px;
+        }
+
+        /* クリーンなミニマリスト・グリッドレイアウト */
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .program-card {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover {
+            border-color: var(--color-cyan-accent);
+            background-color: rgba(255, 255, 255, 0.04);
+            transform: translateY(-4px);
+        }
+
+        .card-index {
+            font-size: 0.85rem;
+            color: var(--color-cyan-accent);
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: block;
+            letter-spacing: 0.1em;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--color-white);
+        }
+
+        .card-text {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* スペックテーブル */
+        .spec-table {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        .spec-table tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .spec-table th, .spec-table td {
+            padding: 30px 20px;
+            text-align: left;
+        }
+
+        .spec-table th {
+            font-weight: 700;
+            color: var(--color-cyan-accent);
+            width: 30%;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+        }
+
+        .spec-table td {
+            color: var(--color-white);
+            font-weight: 400;
+        }
+
+        /* ==========================================================================
+           6. アニメーション & レスポンシブ
+           ========================================================================== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                padding-top: 160px;
+                padding-bottom: 100px;
+                text-align: center;
+            }
+            .hero-content {
+                max-width: 100%;
+            }
+            .description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .cta-group {
+                justify-content: center;
+            }
+            .hero-graphic-container {
+                height: 450px;
+                margin-top: 40px;
+            }
+            .abstract-3d-sphere { width: 260px; height: 260px; }
+            .glass-panel { width: 220px; height: 300px; transform: rotate(-12deg) translate(-30px, 20px); }
+            .accent-ring { width: 380px; height: 380px; }
+            .headline { font-size: 2.8rem; }
+            .program-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="nav-bar">
+        <div class="logo">DONDON<span>.</span></div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <main class="hero-container">
+        
+        <!-- LEFT COLUMN: ARCHITECTURE COPY -->
+        <section class="hero-content">
+            <div class="tagline">50th Anniversary Architecture</div>
+            <h1 class="headline">伝統と地域経済が<br>交差する二日間。<span>どんどん祭り 2025</span></h1>
+            <p class="description">
+                小松市で約50年に渡り紡がれてきた、街全体の鼓動を高める商業的な祭事。洗練された伝統のインフラと現代のエンターテインメントが高度に融合します。
+            </p>
+            <div class="cta-group">
+                <a href="#program" class="btn-primary">プログラムを一覧する</a>
+                <a href="#info" class="btn-secondary">開催概要を見る &rarr;</a>
+            </div>
+        </section>
+
+        <!-- RIGHT COLUMN: 3D GRAPHIC METAPHOR -->
+        <section class="hero-graphic-container" aria-hidden="true">
+            <div class="accent-ring"></div>
+            <div class="abstract-3d-sphere"></div>
+            <div class="glass-panel"></div>
+        </section>
+
+    </main>
+
+    <!-- ABOUT / PROGRAM SECTION -->
+    <section id="program" class="section-container">
+        <div class="section-header">
+            <h2 class="section-title">コア・プログラム</h2>
+            <p style="color: var(--color-text-muted);">洗練された伝統工芸の展示から、熱狂を創出するライブステージまで包括的なイベントレイアウト。</p>
+        </div>
+
+        <div class="program-grid">
+            <!-- 01 -->
+            <div class="program-card">
+                <span class="card-index">EVENT // 01</span>
+                <h3 class="card-title">輪島キリコ展示</h3>
+                <p class="card-text">能登のアイデンティティである巨大な伝統造形「キリコ」が小松へ。漆黒に映える壮大な光のインスタレーションを体感。</p>
+            </div>
+            <!-- 02 -->
+            <div class="program-card">
+                <span class="card-index">EVENT // 02</span>
+                <h3 class="card-title">行燈行列</h3>
+                <p class="card-text">柔らかな陰影を描く行燈（あんどん）の光波が、夜の街を静かに美しく、幻想的なスケールで彩ります。</p>
+            </div>
+            <!-- 03 -->
+            <div class="program-card">
+                <span class="card-index">EVENT // 03</span>
+                <h3 class="card-title">DJコーによるライブ</h3>
+                <p class="card-text">特別ゲスト「DJコー」がメインステージに登壇。圧倒的な音響アプローチで、会場全体に圧倒的なグルーヴを共有します。</p>
+            </div>
+            <!-- 04 -->
+            <div class="program-card">
+                <span class="card-index">EVENT // 04</span>
+                <h3 class="card-title">ダンスイベント</h3>
+                <p class="card-text">選び抜かれたパフォーマーたちが躍動する、高エネルギーなダンスステージ。熱量と洗練が交差する瞬間。</p>
+            </div>
+            <!-- 05 -->
+            <div class="program-card">
+                <span class="card-index">EVENT // 05</span>
+                <h3 class="card-title">キッチンカー ＆ 縁日</h3>
+                <p class="card-text">現代的な美食アプローチを提供するキッチンカー群と、伝統的な祭事の楽しさをリビルドしたハイクオリティな縁日。</p>
+            </div>
+            <!-- 06 -->
+            <div class="program-card">
+                <span class="card-index">EVENT // 06</span>
+                <h3 class="card-title">ステージパフォーマンス</h3>
+                <p class="card-text">多種多様なアーティストや団体が、二日間にわたりノンストップで最高峰のエンターテインメントを提供します。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPECIFICATIONS SECTION -->
+    <section id="info" class="section-container" style="background-color: var(--color-navy-dark);">
+        <div class="section-header" style="margin-left: auto; margin-right: auto; text-align: center;">
+            <h2 class="section-title">開催概要</h2>
+        </div>
+
+        <table class="spec-table">
+            <tr>
+                <th>イベント名称</th>
+                <td>どんどん祭り</td>
+            </tr>
+            <tr>
+                <th>タイムフレーム</th>
+                <td>2025年10月11日（土） 〜 10月12日（日）</td>
+            </tr>
+            <tr>
+                <th>ロケーション</th>
+                <td>小松駅前 特設会場</td>
+            </tr>
+            <tr>
+                <th>プラットフォームの特徴</th>
+                <td>小松市にて約50年の実績を持つ、地域経済の活性化と文化的調和を目的とした最大級の商業祭。</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding: 60px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center; background-color: var(--color-navy-dark);">
+        <p style="font-size: 0.85rem; color: var(--color-text-muted); letter-spacing: 0.05em;">
+            &copy; 2025 Dondon Matsuri Executive Committee. Architected for Premium Experience.
+        </p>
+    </footer>
+
+</body>
+</html>

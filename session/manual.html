@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINEスマートリテールハンズオンマニュアル</title>
+    <style>
+        /* 全体の基本設定 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* 左側：サイドバー（目次） */
+        .sidebar {
+            width: 280px;
+            background-color: #f8f9fa;
+            border-right: 1px solid #e9ecef;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 {
+            font-size: 1.1rem;
+            color: #495057;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #495057;
+            font-size: 0.95rem;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        /* マウスホバーと選択中のスタイル */
+        .sidebar a:hover {
+            background-color: #e9ecef;
+            color: #22c55e; /* LINEを意識したグリーン */
+        }
+
+        .sidebar a.active {
+            background-color: #e8f5e9;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        /* 右側：メインコンテンツ領域 */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px 60px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+        }
+
+        .content-body {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ★ここが重要：初期状態ではすべての章を非表示にする */
+        .chapter-content {
+            display: none;
+        }
+
+        /* ★activeクラスがついた章だけを表示する */
+        .chapter-content.active {
+            display: block;
+        }
+
+        /* コンテンツ内の装飾 */
+        .chapter-number {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 16px;
+            border-left: 4px solid #22c55e;
+            padding-left: 10px;
+        }
+
+        .note-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 左側：目次ナビゲーション -->
+    <!-- data-targetで、右側のどの「id」を開くかを指定しています -->
+    <nav class="sidebar">
+        <h2>マニュアル目次</h2>
+        <ul>
+            <li><a class="menu-item active" data-target="ch1">1. はじめに</a></li>
+            <li><a class="menu-item" data-target="ch2">2. 事前準備</a></li>
+            <li><a class="menu-item" data-target="ch3">3. LINE Loginチャネルの作成</a></li>
+            <li><a class="menu-item" data-target="ch4">4. Messaging APIの設定</a></li>
+            <li><a class="menu-item" data-target="ch5">5. 動作確認</a></li>
+        </ul>
+    </nav>
+
+    <!-- 右側：コンテンツ表示エリア -->
+    <main class="content">
+        <div class="content-body">
+
+            <!-- 第1章 -->
+            <section id="ch1" class="chapter-content active">
+                <p class="chapter-number">第1章</p>
+                <h1>1. はじめに</h1>
+                <p>このハンズオンでは、LINEの各種APIを活用して、店舗向けの「スマートリテールシステム」を構築する手順を学びます。</p>
+                <h2>本システムで実現すること</h2>
+                <p>ユーザーがLINEでログインし、個別の会員証を表示したり、店舗からのセグメント配信を受け取ったりできる仕組みを作ります。</p>
+            </section>
+
+            <!-- 第2章 -->
+            <section id="ch2" class="chapter-content">
+                <p class="chapter-number">第2章</p>
+                <h1>2. 事前準備</h1>
+                <p>開発を始める前に、以下の環境が整っているか確認してください。</p>
+                <h2>必要なアカウント</h2>
+                <p>・LINE個人アカウント（またはビジネスアカウント）<br>・GitHubアカウント</p>
+                <div class="note-box">
+                    <strong>【推奨環境】</strong> ブラウザは Google Chrome の最新版を使用してください。
+                </div>
+            </section>
+
+            <!-- 第3章 -->
+            <section id="ch3" class="chapter-content">
+                <p class="chapter-number">第3章</p>
+                <h1>3. LINE Loginチャネルの作成</h1>
+                <p>システムにLINEログインを組み込むためのチャネル（設定の器）を作成します。</p>
+                <h2>ステップ1：プロバイダーの作成</h2>
+                <p>LINE Developersコンソールにログインし、新規プロバイダーを作成します。</p>
+                <h2>ステップ2：LINEログインチャネルの追加</h2>
+                <p>「新規チャネル作成」から「LINEログイン」を選択し、必要な情報を入力してください。</p>
+            </section>
+
+            <!-- 第4章 -->
+            <section id="ch4" class="chapter-content">
+                <p class="chapter-number">第4章</p>
+                <h1>4. Messaging APIの設定</h1>
+                <p>ユーザーにメッセージを送ったり、リッチメニューを表示したりするための設定を行います。</p>
+                <h2>チャネルの作成</h2>
+                <p>LINEログインと同様に、今度は「Messaging API」を選択してチャネルを作成します。ここで発行される「チャネルアクセストークン」は後ほどプログラムで使用します。</p>
+            </section>
+
+            <!-- 第5章 -->
+            <section id="ch5" class="chapter-content">
+                <p class="chapter-number">第5章</p>
+                <h1>5. 動作確認</h1>
+                <p>すべての設定が完了したら、実際に動かしてみましょう。</p>
+                <h2>テスト手順</h2>
+                <p>1. 構築したWebサイトにアクセスします。<br>2. 「LINEでログイン」ボタンを押し、認証を許可します。<br>3. ログイン後、自分のアイコンと名前が正しく表示されれば成功です！</p>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- 💡切り替えを行うためのJavaScript -->
+    <script>
+        // すべてのメニュー項目（左側）と、すべての章コンテンツ（右側）を取得
+        const menuItems = document.querySelectorAll('.menu-item');
+        const chapters = document.querySelectorAll('.chapter-content');
+
+        // メニューの各項目に「クリックされたときの処理」を登録
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                
+                // 1. まず、すべてのメニューから「active（緑文字）」を消す
+                menuItems.forEach(i => i.classList.remove('active'));
+                // 2. クリックされたメニューだけに「active」をつける
+                item.classList.add('active');
+
+                // 3. まず、すべての章コンテンツを「非表示（activeを消す）」にする
+                chapters.forEach(ch => ch.classList.remove('active'));
+                
+                // 4. クリックされたメニューの「data-target」に書かれたIDを取得する
+                const targetId = item.getAttribute('data-target');
+                // 5. そのIDを持つ章だけを「表示（activeをつける）」にする
+                document.getElementById(targetId).classList.add('active');
+
+                // 6. ページが長かった場合のために、右側のスクロールを一番上に戻す
+                document.querySelector('.content').scrollTop = 0;
+            });
+        });
+    </script>
+</body>
+</html>

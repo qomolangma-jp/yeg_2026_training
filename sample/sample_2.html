@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>どんどん祭り 2025 | 伝統と感覚が交差する、特別な二日間</title>
+    <style>
+        /* ==========================================================================
+           1. Design System & Variables (Editorial & Elegant)
+           ========================================================================== */
+        :root {
+            --color-bg: #f7f5f0;           /* ニュアンスのある上質なベージュ */
+            --color-white: #ffffff;
+            --color-text-main: #2a2a2a;    /* 墨のような深い炭色 */
+            --color-olive: #5b624a;        /* アースカラー：静けさのあるオリーブ */
+            --color-terracotta: #c47a61;   /* アクセント：肌に馴染むソフトテラコッタ */
+            --color-gray-light: #e6e3dc;   /* 繊細な境界線 */
+            
+            --font-serif: 'Times New Roman', 'YuMincho', '游明朝', 'Hiragino Mincho ProN', serif;
+            --font-sans: 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            line-height: 1.9;
+            letter-spacing: 0.05em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* エディトリアル共通のセクションタイトル */
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--color-olive);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+        }
+
+        /* ==========================================================================
+           2. Hero Section (洗練されたファーストビュー・日本のミニマリズム)
+           ========================================================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 140px 0;
+            background: 
+                linear-gradient(rgba(247,245,240,0.85), rgba(247,245,240,0.95)),
+                url('https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=2070&auto=format&fit=crop'); /* 和の静謐さを感じるミニマルな背景 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .hero-title-area {
+            position: relative;
+        }
+
+        .hero-brand {
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--color-olive);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 3.2rem;
+            font-weight: 400;
+            line-height: 1.3;
+            letter-spacing: 0.15em;
+            margin-bottom: 32px;
+        }
+
+        .hero-meta {
+            margin-top: 40px;
+            border-top: 1px solid var(--color-gray-light);
+            padding-top: 24px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .meta-item {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .meta-item span {
+            font-family: var(--font-serif);
+            display: block;
+            font-size: 1.1rem;
+            color: var(--color-text-main);
+            margin-top: 4px;
+        }
+
+        /* ミニマルUIなCTAボタン */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-olive);
+            color: var(--color-white);
+            padding: 16px 40px;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            border: 1px solid var(--color-olive);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--color-olive);
+        }
+
+        .hero-lead-text {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #4a4a4a;
+            text-align: justify;
+            margin-bottom: 40px;
+        }
+
+        /* ==========================================================================
+           3. Concept Section (余白を贅沢に使ったストーリー記述)
+           ========================================================================== */
+        .concept {
+            padding: 140px 0;
+            background-color: var(--color-white);
+            border-top: 1px solid var(--color-gray-light);
+            border-bottom: 1px solid var(--color-gray-light);
+        }
+
+        .concept-content {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .concept-title {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .concept-text {
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            color: #555;
+            text-align: justify;
+            text-justify: inter-character;
+        }
+
+        /* ==========================================================================
+           4. Program Section (クリーンなグリッドレイアウト)
+           ========================================================================== */
+        .program {
+            padding: 140px 0;
+        }
+
+        .clean-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            row-gap: 80px;
+        }
+
+        .program-card {
+            display: flex;
+            flex-direction: column;
+            background: transparent;
+        }
+
+        /* スキンケアブランドのボトルのような、静けさのあるクリーンなイメージ枠 */
+        .card-image-placeholder {
+            width: 100%;
+            height: 380px;
+            background-color: var(--color-white);
+            border: 1px solid var(--color-gray-light);
+            margin-bottom: 24px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 繊細でミニマルなラインアート調の装飾（化粧箱のイメージ） */
+        .card-image-placeholder::after {
+            content: '';
+            position: absolute;
+            width: calc(100% - 32px);
+            height: calc(100% - 32px);
+            border: 1px solid rgba(91, 98, 74, 0.1);
+        }
+
+        .card-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-terracotta);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            color: var(--color-text-main);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        /* ==========================================================================
+           5. Information Section (洗練されたスペック・リスト)
+           ========================================================================== */
+        .info {
+            padding: 120px 0;
+            background-color: var(--color-white);
+            border-top: 1px solid var(--color-gray-light);
+        }
+
+        .info-list {
+            max-width: 800px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .info-item {
+            display: flex;
+            border-bottom: 1px solid var(--color-gray-light);
+            padding: 32px 0;
+            align-items: flex-start;
+        }
+
+        .info-item:first-child {
+            border-top: 1px solid var(--color-gray-light);
+        }
+
+        .info-label {
+            font-family: var(--font-serif);
+            width: 30%;
+            font-size: 0.95rem;
+            color: var(--color-olive);
+            letter-spacing: 0.1em;
+        }
+
+        .info-value {
+            width: 70%;
+            font-size: 0.95rem;
+            color: var(--color-text-main);
+        }
+
+        .info-cta-zone {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* ==========================================================================
+           6. Footer
+           ========================================================================== */
+        footer {
+            background-color: var(--color-bg);
+            padding: 80px 0;
+            border-top: 1px solid var(--color-gray-light);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            letter-spacing: 0.4em;
+            color: var(--color-text-main);
+            margin-bottom: 24px;
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: #888;
+        }
+
+        /* ==========================================================================
+           7. Responsive
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .clean-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .clean-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            .card-image-placeholder {
+                height: 300px;
+            }
+            .info-item {
+                flex-direction: column;
+                padding: 24px 0;
+            }
+            .info-label {
+                width: 100%;
+                margin-bottom: 8px;
+                font-weight: 600;
+            }
+            .info-value {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-title-area">
+                    <span class="hero-brand">The 50th Annual Gathering</span>
+                    <h1 class="hero-title">日常をほどき、<br>心を満たす特別な二日間。<br>どんどん祭り 2025</h1>
+                    <div class="hero-meta">
+                        <div class="meta-item">開催日程<span>10.11 Sat – 10.12 Sun</span></div>
+                        <div class="meta-item">会場<span>小松駅前 特設会場</span></div>
+                    </div>
+                </div>
+                
+                <div class="hero-lead-area">
+                    <p class="hero-lead-text">
+                        半世紀の時を紡いできた、石川県小松市の美しい秋の情景。伝統の灯火が静かに五感を揺さぶり、心地よい現代の熱狂が心を解きほぐします。美意識と調和が息づく空間で、贅沢な時の流れをご体感ください。
+                    </p>
+                    <a href="#program" class="cta-button">プログラムを観る</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="concept">
+        <div class="container">
+            <div class="concept-content">
+                <span class="section-label">Our Story</span>
+                <h2 class="concept-title">街の記憶に、心地よい調和を。</h2>
+                <p class="concept-text">
+                    約50年にわたり、小松の街を豊かに彩り続けてきた「どんどん祭り」。それは地域の商業的な繋がりから生まれ、いつしか人々の心を美しく満たす、なくてはならない秋の習慣となりました。歴史の奥深さを宿す伝統的な演出と、現代を生きる私たちの感性が心地よく響き合う特別なひととき。飾らない、けれど上質な熱狂がここにあります。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="program" class="program">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">The Elements</span>
+                <h2 class="section-title">心を整え、魅了する出し物</h2>
+            </div>
+            
+            <div class="clean-grid">
+                
+                <div class="program-card">
+                    <div class="card-image-placeholder" aria-hidden="true">
+                        <span style="font-family: var(--font-serif); color: var(--color-olive); font-size: 0.9rem;">01 / Culture</span>
+                    </div>
+                    <span class="card-category">伝統の美意識</span>
+                    <h3 class="card-title">輪島キリコ展示</h3>
+                    <p class="card-desc">能登の風土が育んだ壮大な「キリコ」が小松に佇みます。闇夜に溶け込む荘厳な造形美と、静かに揺れる伝統の灯火を間近で愛でる、贅沢なひととき。</p>
+                </div>
+
+                <div class="program-card">
+                    <div class="card-image-placeholder" aria-hidden="true">
+                        <span style="font-family: var(--font-serif); color: var(--color-olive); font-size: 0.9rem;">02 / Light</span>
+                    </div>
+                    <span class="card-category">幻想の光景</span>
+                    <h3 class="card-title">行燈行列</h3>
+                    <p class="card-desc">柔らかな光が夜の街並みを優しく包み込む、風情豊かな行燈（あんどん）の行列。温かみのある陰影が、特別な夜を情緒的に演出します。</p>
+                </div>
+
+                <div class="program-card">
+                    <div class="card-image-placeholder" aria-hidden="true">
+                        <span style="font-family: var(--font-serif); color: var(--color-olive); font-size: 0.9rem;">03 / Resonance</span>
+                    </div>
+                    <span class="card-category">特別共鳴</span>
+                    <h3 class="card-title">DJコーによるライブ</h3>
+                    <p class="card-desc">スペシャルゲスト「DJコー」による洗練されたサウンドパフォーマンス。会場の空気を心地よい熱狂で満たし、特別な一体感を創り出します。</p>
+                </div>
+
+                <div class="program-card">
+                    <div class="card-image-placeholder" aria-hidden="true">
+                        <span style="font-family: var(--font-serif); color: var(--color-olive); font-size: 0.9rem;">04 / Expression</span>
+                    </div>
+                    <span class="card-category">身体の躍動</span>
+                    <h3 class="card-title">ダンスイベント</h3>
+                    <p class="card-desc">洗練されたしなやかさと、内に秘めた熱いパッションが交差するダンスステージ。表現者たちのエネルギーが、空間に心地よい緊張感を与えます。</p>
+                </div>
+
+                <div class="program-card">
+                    <div class="card-image-placeholder" aria-hidden="true">
+                        <span style="font-family: var(--font-serif); color: var(--color-olive); font-size: 0.9rem;">05 / Gastronomy</span>
+                    </div>
+                    <span class="card-category">大人の味覚</span>
+                    <h3 class="card-title">キッチンカー ＆ 縁日</h3>
+                    <p class="card-desc">素材やこだわりに溢れた美食を届けるキッチンカーエリアと、どこか懐かしくも洗練された縁日。五感を通じて大人の感性を満たします。</p>
+                </div>
+
+                <div class="program-card">
+                    <div class="card-image-placeholder" aria-hidden="true">
+                        <span style="font-family: var(--font-serif); color: var(--color-olive); font-size: 0.9rem;">06 / Gathering</span>
+                    </div>
+                    <span class="card-category">表現のショーケース</span>
+                    <h3 class="card-title">ステージパフォーマンス</h3>
+                    <p class="card-desc">2日間にわたり、特設ステージで次々と繰り広げられる多彩なパフォーマンス。ジャンルを超えた芸術が、祭りのフィナーレへと優しく紡がれます。</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="info">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Specifications</span>
+                <h2 class="section-title">開催概要</h2>
+            </div>
+            
+            <ul class="info-list">
+                <li class="info-item">
+                    <div class="info-label">名称</div>
+                    <div class="info-value">どんどん祭り</div>
+                </li>
+                <li class="info-item">
+                    <div class="info-label">会期</div>
+                    <div class="info-value">2025年10月11日（土） ～ 10月12日（日）</div>
+                </li>
+                <li class="info-item">
+                    <div class="info-label">場所</div>
+                    <div class="info-value">石川県小松市・小松駅前 特設会場</div>
+                </li>
+                <li class="info-item">
+                    <div class="info-label">概要と特徴</div>
+                    <div class="info-value">小松市にて約50年続く、伝統的なアイデンティティと現代のライフスタイルが融合した商業的な祭事。</div>
+                </li>
+            </ul>
+
+            <div class="info-cta-zone">
+                <a href="#" class="cta-button">祭事の詳細を確かめる</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">DONDON MATSURI</div>
+            <p class="copyright">&copy; 2025 Dondon Matsuri Executive Committee. Beautifully Crafted for Inspiration.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

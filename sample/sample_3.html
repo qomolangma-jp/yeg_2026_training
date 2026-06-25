@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>どんどん祭り 2025 | 50-YEAR STREET FEST</title>
+    <style>
+        /* ==========================================================================
+           1. ネオブロータリズム・デザインシステム
+           ========================================================================== */
+        :root {
+            --color-black: #000000;
+            --color-white: #ffffff;
+            --color-hotpink: #ff007f;    /* 唯一のアクセント：強烈なホットピンク */
+            --color-bg: #f0f0f0;         /* 荒々しさを引き立てるライトグレー */
+            
+            /* ネオブロータリズムの象徴：極太の黒枠とハードな影 */
+            --brutal-border: 4px solid #000000;
+            --brutal-border-thin: 2px solid #000000;
+            --brutal-shadow: 8px 8px 0px #000000;
+            --brutal-shadow-small: 4px 4px 0px #000000;
+            
+            --font-impact: 'Impact', 'Arial Black', 'Hiragino Kaku Gothic StdN', 'Corporate Logo', sans-serif;
+            --font-sans: 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-black);
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* 共通ボタンスタイル（クリックしたくなるハードなUI） */
+        .brutal-btn {
+            display: inline-block;
+            background-color: var(--color-hotpink);
+            color: var(--color-white);
+            font-family: var(--font-impact);
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 16px 36px;
+            border: var(--brutal-border);
+            box-shadow: var(--brutal-shadow-small);
+            text-decoration: none;
+            transition: all 0.1s ease;
+            cursor: pointer;
+        }
+
+        .brutal-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #000000;
+            background-color: var(--color-white);
+            color: var(--color-black);
+        }
+
+        /* ==========================================================================
+           2. ヒーローセクション（衝撃を与えるファーストビュー）
+           ========================================================================== */
+        .hero {
+            min-height: 100vh;
+            padding: 140px 0 80px 0;
+            border-bottom: var(--brutal-border);
+            background-color: var(--color-white);
+            position: relative;
+        }
+
+        /* 画面を斜めに走るストリート風テキストベルト */
+        .ticker-tape {
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 12px 0;
+            font-family: var(--font-impact);
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            border-bottom: var(--brutal-border);
+            white-space: nowrap;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        .hero-left {
+            padding-top: 40px;
+        }
+
+        .hero-tag {
+            font-family: var(--font-impact);
+            font-size: 1.5rem;
+            color: var(--color-hotpink);
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .hero-main-title {
+            font-family: var(--font-impact);
+            font-size: 6.5rem;
+            line-height: 0.95;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            word-wrap: break-word;
+        }
+
+        .hero-sub-title-ja {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 4px 16px;
+            display: inline-block;
+            margin-bottom: 30px;
+            transform: rotate(-1deg);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            font-weight: 700;
+            max-width: 600px;
+            margin-bottom: 40px;
+            border-left: 6px solid var(--color-black);
+            padding-left: 20px;
+        }
+
+        /* 右側：強烈なアシンメトリーバナー */
+        .hero-right-box {
+            background-color: var(--color-hotpink);
+            border: var(--brutal-border);
+            box-shadow: 16px 16px 0px #000000;
+            padding: 40px;
+            margin-top: 40px;
+            transform: rotate(2deg);
+        }
+
+        .hero-meta-title {
+            font-family: var(--font-impact);
+            font-size: 2.5rem;
+            color: var(--color-white);
+            line-height: 1;
+            margin-bottom: 20px;
+            -webkit-text-stroke: 1px #000; /* エッジの効いた袋文字 */
+        }
+
+        .hero-meta-list {
+            list-style: none;
+        }
+
+        .hero-meta-list li {
+            background: var(--color-white);
+            border: var(--brutal-border-thin);
+            padding: 12px 16px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        .hero-meta-list li span {
+            color: var(--color-hotpink);
+            font-family: var(--font-impact);
+            margin-right: 8px;
+        }
+
+        /* ==========================================================================
+           3. コンセプト（生々しいRAWなメッセージ）
+           ========================================================================== */
+        .manifesto {
+            padding: 100px 0;
+            background-color: var(--color-black);
+            color: var(--color-white);
+        }
+
+        .manifesto-box {
+            border: 4px solid var(--color-white);
+            padding: 60px;
+            background-color: #111111;
+            box-shadow: 12px 12px 0px var(--color-hotpink);
+        }
+
+        .manifesto-title {
+            font-family: var(--font-impact);
+            font-size: 3rem;
+            color: var(--color-hotpink);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .manifesto-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* ==========================================================================
+           4. プログラム（歪んだアシンメトリー・グリッド）
+           ========================================================================== */
+        .program {
+            padding: 120px 0;
+        }
+
+        .section-title-brutal {
+            font-family: var(--font-impact);
+            font-size: 4.5rem;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 60px;
+            text-shadow: 4px 4px 0px var(--color-hotpink);
+        }
+
+        /* あえて高さをバラバラに見せる非対称グリッド */
+        .brutal-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 30px;
+        }
+
+        .brutal-card {
+            background-color: var(--color-white);
+            border: var(--brutal-border);
+            box-shadow: var(--brutal-shadow);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* グリッド幅の非対称な割り振りと、個別配置の傾き */
+        .b-card-1 { grid-column: 1 / 7; transform: rotate(-1deg); }
+        .b-card-2 { grid-column: 7 / 13; transform: rotate(1deg); margin-top: 40px; }
+        .b-card-3 { grid-column: 1 / 6; margin-top: -20px; }
+        .b-card-4 { grid-column: 6 / 13; transform: rotate(-0.5deg); }
+        .b-card-5 { grid-column: 1 / 8; transform: rotate(1.5deg); }
+        .b-card-6 { grid-column: 8 / 13; margin-top: -30px; }
+
+        .card-num {
+            font-family: var(--font-impact);
+            font-size: 2.5rem;
+            line-height: 1;
+            color: var(--color-bg);
+            -webkit-text-stroke: 1.5px #000;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(transparent 60%, var(--color-hotpink) 60%); /* ホットピンクの極太マーカー風アンダーライン */
+            display: inline-block;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* ==========================================================================
+           5. インフォメーション
+           ========================================================================== */
+        .info {
+            padding: 100px 0;
+            background-color: var(--color-white);
+            border-top: var(--brutal-border);
+        }
+
+        .info-box {
+            border: var(--brutal-border);
+            box-shadow: var(--brutal-shadow);
+            background-color: var(--color-bg);
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .info-row {
+            display: flex;
+            border-bottom: var(--brutal-border-thin);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-family: var(--font-impact);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 24px;
+            width: 30%;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-value {
+            padding: 24px;
+            width: 70%;
+            font-weight: 900;
+            font-size: 1.1rem;
+            background-color: var(--color-white);
+        }
+
+        .info-cta {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* ==========================================================================
+           6. フッター
+           ========================================================================== */
+        footer {
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: 40px 0;
+            text-align: center;
+            border-top: var(--brutal-border);
+        }
+
+        .footer-text {
+            font-family: var(--font-impact);
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 700;
+        }
+
+        /* ==========================================================================
+           7. レスポンシブ対応
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-main-title {
+                font-size: 4.5rem;
+            }
+            .hero-right-box {
+                margin-top: 0;
+                transform: none;
+            }
+            .brutal-grid {
+                display: block;
+            }
+            .brutal-card {
+                margin-top: 0 !important;
+                margin-bottom: 30px;
+                transform: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-main-title {
+                font-size: 3.5rem;
+            }
+            .section-title-brutal {
+                font-size: 3rem;
+            }
+            .info-row {
+                flex-direction: column;
+            }
+            .info-label, .info-value {
+                width: 100%;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ticker-tape">
+        +++ KOMATSU CITY STREET FESTIVAL +++ 50TH ANNIVERSARY +++ DON-DON MATSURI 2025 +++ OPEN THE NIGHT +++
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                
+                <div class="hero-left">
+                    <span class="hero-tag">THE 50TH SPECIAL EDITION</span>
+                    <h1 class="hero-main-title">DON-DON<br>FEST 2025</h1>
+                    <div class="hero-sub-title-ja">伝統×衝動：どんどん祭り</div>
+                    <p class="hero-description">
+                        小松駅前が漆黒の夜に染まり、1色だけの熱狂がストリートを支配する。約50年引き継がれてきた伝統の灯火と、現代のユースカルチャーが容赦なく激突する、エッジの効いた狂気の2日間。
+                    </p>
+                    <a href="#lineup" class="brutal-btn">SEE LINEUP &rarr;</a>
+                </div>
+                
+                <div class="hero-right-box">
+                    <h2 class="hero-meta-title">DROP INFO</h2>
+                    <ul class="hero-meta-list">
+                        <li><span>DATE:</span> 2025.10.11 [SAT] - 10.12 [SUN]</li>
+                        <li><span>LOC:</span> 小松駅前 特設ストリート</li>
+                        <li><span>TYPE:</span> COMMERCIAL & RAW STREET FEST</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <section class="manifesto">
+        <div class="container">
+            <div class="manifesto-box">
+                <h2 class="manifesto-title">MANIFESTO</h2>
+                <p class="manifesto-text">
+                    これは、ありふれた地域のお祭りではない。半世紀にわたり小松の経済とアイデンティティを揺さぶり続けてきた商業祭の、最も過激で最もクリーンな進化系だ。予定調和の日常を壊し、剥き出しの熱狂に身を委ねろ。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="lineup" class="program">
+        <div class="container">
+            <h2 class="section-title-brutal">LINEUP / 出し物</h2>
+            
+            <div class="brutal-grid">
+                
+                <div class="brutal-card b-card-1">
+                    <div>
+                        <span class="card-num">01</span>
+                        <h3 class="card-title">輪島キリコ展示</h3>
+                    </div>
+                    <p class="card-desc">能登の巨大な伝統造形「キリコ」がストリートを急襲。その圧倒的なスケールと、闇にギラギラと輝く極彩色の光を至近距離で目撃せよ。</p>
+                </div>
+
+                <div class="brutal-card b-card-2">
+                    <div>
+                        <span class="card-num">02</span>
+                        <h3 class="card-title">行燈行列</h3>
+                    </div>
+                    <p class="card-desc">無数の行燈（あんどん）が列をなし、漆黒の街並みを怪しく、そして美しく侵食していく。伝統の光が織りなすサイケデリックなパレード。</p>
+                </div>
+
+                <div class="brutal-card b-card-3">
+                    <div>
+                        <span class="card-num">03</span>
+                        <h3 class="card-title">DJコーによるライブ</h3>
+                    </div>
+                    <p class="card-desc">シーンのレジェンド「DJコー」がステージを完全ジャック。爆音のグルーヴで、小松駅前を一瞬にして狂乱の野外フェス空間へと変貌させる。</p>
+                </div>
+
+                <div class="brutal-card b-card-4">
+                    <div>
+                        <span class="card-num">04</span>
+                        <h3 class="card-title">ダンスイベント</h3>
+                    </div>
+                    <p class="card-desc">ストリートから集結した精鋭ダンサーたちが、剥き出しのパッションをぶつけ合う。一瞬の火花が散るような、アグレッシブな身体表現を見逃すな。</p>
+                </div>
+
+                <div class="brutal-card b-card-5">
+                    <div>
+                        <span class="card-num">05</span>
+                        <h3 class="card-title">キッチンカー ＆ 縁日</h3>
+                    </div>
+                    <p class="color-text card-desc">厳選されたジャンクフード＆限定グルメが並ぶ巨大キッチンカーゾーンと、大人が童心に帰ってハメを外せる超過激な現代版の縁日エリア。</p>
+                </div>
+
+                <div class="brutal-card b-card-6">
+                    <div>
+                        <span class="card-num">06</span>
+                        <h3 class="card-title">ステージパフォーマンス</h3>
+                    </div>
+                    <p class="card-desc">2日間にわたり、特設メインステージで多種多様なアーティストがノーブレーキのギグを敢行。いつ来ても常にクライマックスが続く。</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="info">
+        <div class="container">
+            <h2 class="section-title-brutal" style="text-align: center;">SPEC / 概要</h2>
+            
+            <div class="info-box">
+                <div class="info-row">
+                    <div class="info-label">EVENT</div>
+                    <div class="info-value">どんどん祭り</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">TIMELINE</div>
+                    <div class="info-value">2025年10月11日（土） ～ 10月12日（日）</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">VENUE</div>
+                    <div class="info-value">石川県小松市 / 小松駅前 特設エリア</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">IDENTITY</div>
+                    <div class="info-value">小松市の歴史を約50年紡いできた、伝統とストリートが融合する最大級の商業祭。</div>
+                </div>
+            </div>
+
+            <div class="info-cta">
+                <a href="#" class="brutal-btn">ENTER THE STREET &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-text">DONDON MATSURI 2025</div>
+            <p class="copyright">&copy; 2025 Dondon Matsuri Executive Committee. No Rules. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
