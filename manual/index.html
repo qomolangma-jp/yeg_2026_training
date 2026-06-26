@@ -156,6 +156,148 @@
         .note-box strong {
             color: #b78103;
         }
+
+        iframe {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border: 0;
+        }
+
+        /* タブレット以下 */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 260px;
+                padding: 20px 16px;
+            }
+
+            .content {
+                padding: 36px 40px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* スマホ表示 */
+        @media (max-width: 768px) {
+            body {
+                display: block;
+                height: auto;
+                min-height: 100dvh;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: 0;
+                border-bottom: 1px solid #e9ecef;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding: 14px 12px;
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                background-color: #f8f9fa;
+            }
+
+            .sidebar h2 {
+                margin-bottom: 12px;
+                font-size: 1rem;
+                padding-bottom: 8px;
+            }
+
+            .sidebar ul {
+                display: flex;
+                gap: 8px;
+                min-width: max-content;
+                padding-bottom: 2px;
+            }
+
+            .sidebar li {
+                margin-bottom: 0;
+            }
+
+            .sidebar a {
+                font-size: 0.88rem;
+                white-space: nowrap;
+                padding: 8px 12px;
+            }
+
+            .content {
+                overflow: visible;
+                padding: 24px 16px 32px;
+            }
+
+            .content-body {
+                max-width: 100%;
+            }
+
+            .chapter-number {
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 1.45rem;
+                margin-bottom: 22px;
+                padding-bottom: 10px;
+            }
+
+            h2 {
+                font-size: 1.15rem;
+                margin-top: 30px;
+                margin-bottom: 14px;
+            }
+
+            p,
+            li {
+                font-size: 0.96rem;
+                line-height: 1.75;
+            }
+
+            ul.steps {
+                padding-left: 18px;
+            }
+
+            ul.steps li {
+                margin-bottom: 18px;
+            }
+
+            .manual-img {
+                margin: 14px 0 6px;
+                border-radius: 5px;
+            }
+
+            .note-box {
+                padding: 12px;
+                margin: 18px 0;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .sidebar {
+                padding: 12px 10px;
+            }
+
+            .sidebar a {
+                font-size: 0.84rem;
+                padding: 7px 10px;
+            }
+
+            .content {
+                padding: 20px 12px 28px;
+            }
+
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            h2 {
+                font-size: 1.05rem;
+                padding-left: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -252,9 +394,15 @@
                 <h2>AIへの指示（プロンプト）</h2>
                 <p>AIに送る指示文（プロンプト）は、専用のテンプレートを使って作成します。</p>
                 <ul class="steps">
-                    <li>事前に用意されている「Googleドキュメントのテンプレート」をご自身のパソコンやドライブに準備します。</li>
+                    <li>事前に用意されている「Googleドキュメントのテンプレート」をダウンロードして開きます。
+                        <br>
+                        <a href="https://docs.google.com/document/d/1fDxPDhreHE2lxbmusLT6198G9Uojim-PuSpjBJgsJcM/edit?tab=t.0#heading=h.jwhnnzwl8v2t" target="_blank">テンプレートを開く</a>
+                    </li>
                     <li>今回のホームページのテーマは「地元のお祭りをWebで告知しよう！」です。</li>
-                    <li>このテーマに沿って、お祭りの日時、場所、見どころなどの必要項目を直接書き換え、穴埋めを完成させます。</li>
+                    <li>このテーマに沿って、お祭りの日時、場所、見どころなどの必要項目を直接書き換え、穴埋めを完成させます。
+                        <br>
+                        <a href="https://docs.google.com/document/d/e/2PACX-1vTXMQOQ9PrK8g1_06h9eyR9BQrzrTVu1PCJ5ECmVZZP1x8cfci8jFBYn3RhE-4IdQe6CrnPjIHeBXbK/pub" target="_blank">小松市どんどんまつり の入力例</a>
+                    </li>
                     <li>完成したテンプレートのテキストを「すべて選択（Ctrl+A / Cmd+A）」し、丸ごとコピーします。</li>
                     <li>Geminiを開き、コピーしたテキストをメッセージ欄に貼り付けて送信します。</li>
                     <li>
@@ -337,6 +485,10 @@
                         <img src="032.png" alt="変更を保存画面" class="manual-img">
                     </li>
                 </ul>
+
+                <h2>YOUTUBEを参考にする</h2>
+                <p>本マニュアルの内容は、以下のYouTube動画でも解説しています。</p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ad7YWt9mqy4?si=vvCzeiJYB3Dtvju0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </section>
 
         </div>
@@ -345,6 +497,7 @@
     <script>
         const menuItems = document.querySelectorAll('.menu-item');
         const chapters = document.querySelectorAll('.chapter-content');
+        const contentArea = document.querySelector('.content');
 
         menuItems.forEach(item => {
             item.addEventListener('click', () => {
@@ -355,7 +508,10 @@
                 const targetId = item.getAttribute('data-target');
                 document.getElementById(targetId).classList.add('active');
 
-                document.querySelector('.content').scrollTop = 0;
+                contentArea.scrollTop = 0;
+                if (window.matchMedia('(max-width: 768px)').matches) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             });
         });
     </script>
