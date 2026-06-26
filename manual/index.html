@@ -134,9 +134,10 @@
         /* 同一ディレクトリ内の画像を表示するためのスタイル */
         .manual-img {
             display: block;
-            max-width: 100%;
+            max-width: 600px;
+            width: 100%;
             height: auto;
-            margin: 12px 0 8px 0;
+            margin: 20px 0 8px 0;
             border: 1px solid #dadce0;
             border-radius: 6px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -192,21 +193,26 @@
                 <h2>GitHubアカウントの作成</h2>
                 <ul class="steps">
                     <li>
-                        <a href="https://github.com" target="_blank">GitHubの公式サイトを開き、「Sign up（サインアップ）」をクリックします。</a>
+                        GitHubの公式サイトを開き、「Sign up（サインアップ）」をクリックします。
                         <img src="001.png" alt="サインアップボタン位置" class="manual-img">
                     </li>
                     <li>
-                        今回は手順が簡単なGoogleアカウントの連携を行います。所有のGoogleアカウントと連携してください。
+                        Googleアカウントと連携するか、メールアドレスを入力して登録を進めます。
                         <img src="002.png" alt="Googleログインボタン位置" class="manual-img">
                     </li>
                     <li>
+                        今回は手順が簡単なGoogleアカウントの連携を行います。所有のGoogleアカウントと連携してください。
+                        <img src="003.png" alt="所有のGoogleアカウントと連携" class="manual-img">
+                    </li>
+                    <li>
                         ユーザー名を半角英数字で入力し、国（Japan）を選択します。
+                        「Create account」の緑色のボタンを押せば登録完了です。
+                        <img src="004.png" alt="アカウント作成完了ボタン" class="manual-img">
                     </li>
                     <li>
                         アカウント登録のためにセキュリティクイズ（パズル）に答えます。矢印を使って、左側に示されているものと同じ中身のバスケットの画像を見つけてください。
-                    </li>
-                    <li>
-                        「Create account」の緑色のボタンを押せば登録完了です。
+                        <img src="005.png" alt="セキュリティクイズ画面1" class="manual-img">
+                        <img src="006.png" alt="セキュリティクイズ画面2" class="manual-img">
                     </li>
                 </ul>
             </section>
@@ -219,22 +225,22 @@
                 <ul class="steps">
                     <li>
                         GitHub上で新しいリポジトリを作成します。
-                        <img src="004.png" alt="リポジトリ新規作成" class="manual-img">
+                        <img src="007.png" alt="リポジトリ新規作成" class="manual-img">
                     </li>
                     <li>
-                        リポジトリ名（フォルダ名）を入力します（例：「YouTube-pr」）。Description（説明欄）に、サイトの目的などを分かりやすく記述します。
+                        リポジトリ名（フォルダ名）を入力します（例：「dondonfestival2025」）。Description（説明欄）に、サイトの目的などを分かりやすく記述します。
                     </li>
                     <li>
                         「Add a README file」に必ずチェックを入れます。
-                        <img src="005.png" alt="READMEファイル追加設定" class="manual-img">
+                        <img src="008.png" alt="READMEファイル追加設定" class="manual-img">
                     </li>
                     <li>
                         一番下の「Create repository」ボタンを押し、フォルダ作成を確定させます。
-                        <img src="006.png" alt="確定ボタン位置" class="manual-img">
+                        <img src="009.png" alt="確定ボタン位置" class="manual-img">
                     </li>
                     <li>
                         画面が自動で切り替わり、作成されたリポジトリ画面が表示されれば完了です。
-                        <img src="007.png" alt="作成後のリポジトリ画面" class="manual-img">
+                        <img src="010.png" alt="作成後のリポジトリ画面" class="manual-img">
                     </li>
                 </ul>
             </section>
@@ -242,15 +248,19 @@
             <section id="ch4" class="chapter-content">
                 <p class="chapter-number">第4章</p>
                 <h1>4. AIによるHTMLコードの生成</h1>
-                <p>作成した保存スペースに入れるためのホームページの設計図（HTMLコード）を、AIアシスタントに作ってもらいます。</p>
+                <p>作成した保存スペースに入れるためのホームページの設計図（HTMLコード）を、AIアシスタント「Gemini」に作てもらいます。</p>
                 <h2>AIへの指示（プロンプト）</h2>
-                <p>AIに送る指示文（プロンプト）は、専用のテンプレートを使って作成します。今回のホームページのテーマは「地元のお祭りをWebで告知しよう！」です。</p>
+                <p>AIに送る指示文（プロンプト）は、専用のテンプレートを使って作成します。</p>
                 <ul class="steps">
                     <li>事前に用意されている「Googleドキュメントのテンプレート」をご自身のパソコンやドライブに準備します。</li>
+                    <li>今回のホームページのテーマは「地元のお祭りをWebで告知しよう！」です。</li>
                     <li>このテーマに沿って、お祭りの日時、場所、見どころなどの必要項目を直接書き換え、穴埋めを完成させます。</li>
                     <li>完成したテンプレートのテキストを「すべて選択（Ctrl+A / Cmd+A）」し、丸ごとコピーします。</li>
-                    <li>AIを開き、コピーしたテキストをメッセージ欄に貼り付けて送信します。</li>
-                    <li>AIが出力したHTMLコードの右上にあるコピーボタンを押し、コードを丸ごとコピーしておきます。</li>
+                    <li>Geminiを開き、コピーしたテキストをメッセージ欄に貼り付けて送信します。</li>
+                    <li>
+                        AIが出力したHTMLコードの右上にあるコピーボタンを押し、コードを丸ごとコピーしておきます。
+                        <img src="011.png" alt="コピーボタン位置" class="manual-img">
+                    </li>
                 </ul>
             </section>
 
@@ -262,18 +272,19 @@
                 <ul class="steps">
                     <li>
                         作成したGitHubのリポジトリ画面に戻り、「Add file」から「Create new file」を選択します。
-                        <img src="008.png" alt="Create new file位置" class="manual-img">
+                        <img src="012.png" alt="Create new file位置" class="manual-img">
                     </li>
                     <li>
                         ファイル名は必ず index.html と入力してください。
-                        <img src="009.png" alt="ファイル名入力方法" class="manual-img">
+                        <img src="013.png" alt="ファイル名入力方法" class="manual-img">
                     </li>
                     <li>
                         下の広いスペースに、コピーしたコードをそのまま貼り付けます。
                     </li>
                     <li>
                         右上の「Commit changes（変更を保存）」を押し、ファイルを保存します。
-                        <img src="010.png" alt="変更を保存画面" class="manual-img">
+                        <img src="014.png" alt="変更を保存画面1" class="manual-img">
+                        <img src="015.png" alt="変更を保存画面2" class="manual-img">
                     </li>
                 </ul>
 
@@ -281,15 +292,15 @@
                 <ul class="steps">
                     <li>
                         リポジトリ上部のメニューから「Settings（設定）」を開きます。
-                        <img src="011.png" alt="Settings位置" class="manual-img">
+                        <img src="016.png" alt="Settings位置" class="manual-img">
                     </li>
                     <li>
                         左メニューから「Pages」を選びクリックします。
-                        <img src="012.png" alt="Pages位置" class="manual-img">
+                        <img src="017.png" alt="Pages位置" class="manual-img">
                     </li>
                     <li>
                         Build and deploymentの「Branch」項目を main に変更して「Save」します。
-                        <img src="013.png" alt="ブランチ設定" class="manual-img">
+                        <img src="018.png" alt="ブランチ設定" class="manual-img">
                     </li>
                 </ul>
 
@@ -299,8 +310,13 @@
 
                 <ul class="steps">
                     <li>
-                        URLが発行されたら「Visit site」ボタンをクリックします。表示されたURLを取得し、共有して提出しましょう。
-                        <img src="014.png" alt="URL発行画面" class="manual-img">
+                        URLが発行されたら「Visit site」ボタンをクリックします。
+                        <img src="020.png" alt="Visit siteボタン" class="manual-img">
+                    </li>
+                    <li>
+                        表示されたURLを取得し、以下のスプレッドシートに入力して共有しましょう。
+                        <br>
+                        <a href="https://docs.google.com/spreadsheets/d/1ivvpDpg0U9E3xhaFuI-w3X7FSjAQOh_ng7JjNkqCDEw/edit?usp=drive_link" target="_blank">スプレッドシートはこちら</a>
                     </li>
                 </ul>
             </section>
@@ -311,17 +327,14 @@
                 <h2>公開したページを編集する</h2>
                 <ul class="steps">
                     <li>AIへのプロンプトを変更して再出力を行い、コードをコピーします。</li>
-                    <li>
-                        リポジトリのトップ画面にある「index.html」をクリックします。
-                        <img src="015.png" alt="index.htmlクリック" class="manual-img">
+                    <li>リポジトリのトップ画面にある「index.html」をクリックします。
+                        <img src="030.png" alt="Visit siteボタン" class="manual-img">
                     </li>
-                    <li>
-                        編集画面に切り替えるため、鉛筆のアイコンをクリックします。
-                        <img src="016.png" alt="鉛筆アイコン" class="manual-img">
+                    <li>編集画面に切り替えるため、鉛筆のアイコンをクリックします。
+                        <img src="031.png" alt="鉛筆アイコン" class="manual-img">
                     </li>
-                    <li>
-                        コピペで内容を編集したら右上の「Commit changes（変更を保存）」を押し、ファイルを保存します。
-                        <img src="017.png" alt="編集後の保存画面" class="manual-img">
+                    <li>コピペで内容を編集したら右上の「Commit changes（変更を保存）」を押し、ファイルを保存します。
+                        <img src="032.png" alt="変更を保存画面" class="manual-img">
                     </li>
                 </ul>
             </section>
