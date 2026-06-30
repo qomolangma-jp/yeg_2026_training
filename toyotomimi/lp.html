@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>豊聡耳ワーク 実施報告＆意見集約プラットフォーム</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-color: #f8fafc;
+    --text-main: #1e293b;
+    --text-sub: #475569;
+    --primary: #3b82f6;
+    --anger: #ef4444;
+    --sorrow: #8b5cf6;
+    --joy: #10b981;
+    --fun: #f59e0b;
+    --white: #ffffff;
+  }
+  
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+  
+  .header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: var(--white);
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  
+  .header h1 {
+    font-size: clamp(24px, 4vw, 42px);
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+  }
+  
+  .header p {
+    font-size: clamp(14px, 2vw, 18px);
+    color: #cbd5e1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .intro-box {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    margin-bottom: 50px;
+    text-align: center;
+  }
+  
+  .intro-box h2 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+  
+  .theme-section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  }
+  
+  .theme-header {
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+  }
+  
+  .theme-title {
+    font-size: 1.4rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+  }
+  
+  .theme-title.sorrow { color: var(--sorrow); }
+  .theme-title.anger { color: var(--anger); }
+  .theme-title.joy { color: var(--joy); }
+  .theme-title.fun { color: var(--fun); }
+  
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .chat-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    color: var(--white);
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .user-a .avatar { background: #3b82f6; } /* 製造業 */
+  .user-b .avatar { background: #f59e0b; } /* 飲食業 */
+  .user-c .avatar { background: #10b981; } /* 小売業 */
+  .user-d .avatar { background: #ef4444; } /* 建設業 */
+  .user-e .avatar { background: #8b5cf6; } /* IT・サービス業 */
+  
+  .message-content {
+    background: #f1f5f9;
+    padding: 15px 20px;
+    border-radius: 0 16px 16px 16px;
+    position: relative;
+    max-width: 85%;
+  }
+  
+  .user-info {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-sub);
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .bubble-text {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  
+  .analysis-section {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 60px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+  
+  .analysis-section h2 {
+    color: var(--primary);
+    text-align: center;
+    margin-top: 0;
+    font-size: 1.8rem;
+  }
+  
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+  
+  .analysis-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  
+  .analysis-card h3 {
+    margin-top: 0;
+    color: var(--joy);
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+  }
+  
+  .cta-section {
+    background: var(--white);
+    border: 3px solid var(--primary);
+    border-radius: 16px;
+    padding: 50px 30px;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+  }
+  
+  .cta-section h2 {
+    color: var(--text-main);
+    font-size: 1.8rem;
+    margin-top: 0;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: 18px 40px;
+    border-radius: 50px;
+    margin-top: 25px;
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(59, 130, 246, 0.4);
+  }
+  
+  @media (max-width: 600px) {
+    .message-content { max-width: 100%; }
+    .container { padding: 20px 15px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <span class="header-badge">石川県連YEG 研修事業実施報告</span>
+  <h1>400人の声を1つに。<br>AIと紡ぐ、石川の未来テーマ。</h1>
+  <p>7月10日に開催された「豊聡耳（とよとみみ）ワーク」において、石川県内の青年経済人たちがテーブルを囲み、地域のリアルな本音を語り合いました。当日参加できなかった皆様へ、その熱のこもった会話の一部を共有し、11月の「風会議」に向けた意見集約を行います。</p>
+</header>
+
+<div class="container">
+  <div class="intro-box">
+    <h2>1テーブル5人。地域のリアルな「雑談」を公開</h2>
+    <p>以下の会話は、当日のワークショップにおいて各テーブルで交わされた「喜怒哀楽」に基づく実際の会話シミュレーションデータです。<br>異なる業種のメンバーが、自社や地域の課題について本音でぶつかり合いました。</p>
+  </div>
+
+  <!-- 【哀】のテーマ -->
+  <section class="theme-section">
+    <div class="theme-header">
+      <h2 class="theme-title sorrow">【哀】人手不足と次世代への不安</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 5px;">お題：「求人を出しても誰も来ん…など、自社や周囲の会社が人手不足で本当に悲鳴を上げている現状は？」</p>
+    </div>
+    
+    <div class="chat-container">
+      <div class="chat-message user-a">
+        <div class="avatar">A</div>
+        <div class="message-content">
+          <span class="user-info">Aさん（製造業）</span>
+          <p class="bubble-text">求人を出しても本当に全然来ないよね。うちは製造業なんだけど、どうしても若い子が敬遠しがちで、職人の高齢化が止まらない。技術の継承ができないのが一番辛いよ。</p>
+        </div>
+      </div>
+      
+      <div class="chat-message user-b">
+        <div class="avatar">B</div>
+        <div class="message-content">
+          <span class="user-info">Bさん（飲食業）</span>
+          <p class="bubble-text">うちの飲食店も同じ。正社員どころかバイトすら集まらなくて、結局社長の自分が毎日現場に出ずっぱりだよ。新しいメニューや企画を考える時間が全く取れない。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-c">
+        <div class="avatar">C</div>
+        <div class="message-content">
+          <span class="user-info">Cさん（小売業）</span>
+          <p class="bubble-text">本当にそう。うちは親の代から続いている地元の小売店だけど、このまま人が入らないなら、自分の代で綺麗に畳むしかないのかなって、本気で考える時があるよ。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-d">
+        <div class="avatar">D</div>
+        <div class="message-content">
+          <span class="user-info">Dさん（建設業）</span>
+          <p class="bubble-text">建設業も深刻。外から人を呼ぼうにも、住む場所や交通の便、それに給与面を比較されると、どうしても都市部の大手企業に条件で負けちゃうんだよね。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-e">
+        <div class="avatar">E</div>
+        <div class="message-content">
+          <span class="user-info">Eさん（IT・サービス業）</span>
+          <p class="bubble-text">給料だけじゃなくて、『この街で働く魅力や誇り』みたいなものを地域全体でブランド化して作っていかないと、もう単独の企業努力だけじゃ限界が来てる気がするな。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 【怒】のテーマ -->
+  <section class="theme-section">
+    <div class="theme-header">
+      <h2 class="theme-title anger">【怒】非効率なアナログ業務と変わらないルール</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 5px;">お題：「いまだにコレ現物提出なの!?と、一番非効率だとブチ切れた手続きは？」</p>
+    </div>
+    
+    <div class="chat-container">
+      <div class="chat-message user-c">
+        <div class="avatar">C</div>
+        <div class="message-content">
+          <span class="user-info">Cさん（小売業）</span>
+          <p class="bubble-text">いまだに行政の補助金申請とかで、何枚も紙を印刷してハンコ押して、わざわざ平日の昼間に窓口まで持ってこいって言われるの、本当に腹立たない？</p>
+        </div>
+      </div>
+      
+      <div class="chat-message user-a">
+        <div class="avatar">A</div>
+        <div class="message-content">
+          <span class="user-info">Aさん（製造業）</span>
+          <p class="bubble-text">めちゃくちゃわかる！しかもちょっとした修正があったら、また紙で出し直し。オンラインでパッと完結させてくれれば、その時間でもう1件営業に行けるのに。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-d">
+        <div class="avatar">D</div>
+        <div class="message-content">
+          <span class="user-info">Dさん（建設業）</span>
+          <p class="bubble-text">行政だけじゃなくて、地域の活動でもさ、出欠確認とかいまだにFAXや電話でやってくる人いるよね。便利なアプリがあるのに「使い方がわからん」って逃げるっていう。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-e">
+        <div class="avatar">E</div>
+        <div class="message-content">
+          <span class="user-info">Eさん（IT・サービス業）</span>
+          <p class="bubble-text">変化を嫌う人が多いのかもね。でも、僕らみたいな世代が「これからはデジタルです」って強引にでも進めていかないと、街全体の生産性が落ちる一方だよ。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-b">
+        <div class="avatar">B</div>
+        <div class="message-content">
+          <span class="user-info">Bさん（飲食業）</span>
+          <p class="bubble-text">今日の前半ワークで作ったAIのLPみたいな便利なウェブツールを、行政の窓口の人にも体験してもらいたいよ。絶対そっちの方がお互い楽になるんだからさ。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 【喜】のテーマ -->
+  <section class="theme-section">
+    <div class="theme-header">
+      <h2 class="theme-title joy">【喜】小さな変化と未来への手応え</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 5px;">お題：「自社や地域で、小さな変化だけど『あ、これ上手くいきそうだな』と未来への手応えを感じた瞬間は？」</p>
+    </div>
+    
+    <div class="chat-container">
+      <div class="chat-message user-e">
+        <div class="avatar">E</div>
+        <div class="message-content">
+          <span class="user-info">Eさん（IT・サービス業）</span>
+          <p class="bubble-text">でも最近、ちょっといい兆しもあるよね。うちの近所の空き家を改装してできたカフェ、SNSで情報発信頑張ってたら、県外から若い子がわざわざ車でめちゃくちゃ来てるんだよ。</p>
+        </div>
+      </div>
+      
+      <div class="chat-message user-b">
+        <div class="avatar">B</div>
+        <div class="message-content">
+          <span class="user-info">Bさん（飲食業）</span>
+          <p class="bubble-text">あ、それ知ってる！うちの店にもその帰りに寄ってくれるお客さんが増えた。やっぱり『わざわざ行く価値のある体験』を作れば、こんな田舎でも人は集まるんだよね。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-c">
+        <div class="avatar">C</div>
+        <div class="message-content">
+          <span class="user-info">Cさん（小売業）</span>
+          <p class="bubble-text">この前の地域のイベントでも、地元の特産品を使った商品を並べたら、外国人観光客の人たちがスマホの自動翻訳アプリ使いながら喜んで買ってくれたよ。壁がなくなってきてるのを感じる。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-a">
+        <div class="avatar">A</div>
+        <div class="message-content">
+          <span class="user-info">Aさん（製造業）</span>
+          <p class="bubble-text">そうそう。石川の『食』とか『伝統技術』ってやっぱりポテンシャル高いんだよ。それを今日学んだLPみたいなツールでうまく外に発信できれば、まだまだ勝負できるって手応えはある。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-d">
+        <div class="avatar">D</div>
+        <div class="message-content">
+          <span class="user-info">Dさん（建設業）</span>
+          <p class="bubble-text">点と点だったお店や企業が、デジタルで繋がって『面』になれば、もっと大きな魅力として発信できそうだね。そういう横の連携を作っていくのは、まさに我々YEGの得意分野じゃない？</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 【楽】のテーマ -->
+  <section class="theme-section">
+    <div class="theme-header">
+      <h2 class="theme-title fun">【楽】1億円あったら仕掛けるおもろい事業</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 5px;">お題：「もし県から予算を1億円丸投げされたら、地元を盛り上げるためにどんな事業を仕掛けたい？」</p>
+    </div>
+    
+    <div class="chat-container">
+      <div class="chat-message user-b">
+        <div class="avatar">B</div>
+        <div class="message-content">
+          <span class="user-info">Bさん（飲食業）</span>
+          <p class="bubble-text">もし県から1億円丸投げされたらどうする？俺は、街中の空き店舗を一括で借り上げて『挑戦できるシェアスペース』を作りたい。家賃無料で、1年間だけお店やビジネスを試せる場所。</p>
+        </div>
+      </div>
+      
+      <div class="chat-message user-d">
+        <div class="avatar">D</div>
+        <div class="message-content">
+          <span class="user-info">Dさん（建設業）</span>
+          <p class="bubble-text">それ面白い！失敗してもいいから、若い起業家がどんどんチャレンジできる特区みたいなのがあるといいね。行政にはお金じゃなくて、出店ハードルを下げる規制緩和だけをお願いして。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-a">
+        <div class="avatar">A</div>
+        <div class="message-content">
+          <span class="user-info">Aさん（製造業）</span>
+          <p class="bubble-text">僕は、その1億円で地元の職人さんと世界中のデザイナーを直接繋ぐ『オンラインマッチングプラットフォーム』を作りたいな。石川の高い技術を、直接海外の市場に売る仕組みを作る。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-e">
+        <div class="avatar">E</div>
+        <div class="message-content">
+          <span class="user-info">Eさん（IT・サービス業）</span>
+          <p class="bubble-text">いいね。あと、各単会でバラバラにやってるイベントを統合して、1ヶ月間石川県全体がフェスになるような大々的なキャンペーンを打ちたい。そのための全県情報集約アプリとか作ってさ。</p>
+        </div>
+      </div>
+
+      <div class="chat-message user-c">
+        <div class="avatar">C</div>
+        <div class="message-content">
+          <span class="user-info">Cさん（小売業）</span>
+          <p class="bubble-text">そういう夢のあるアイデアを、ただの飲み会の雑談で終わらせるの勿体無いよね。11月の風会議で県庁の人に『民間側でこういう仕組みを作りたいから、行政の枠組みで協力してくれ』って提言としてぶつけようよ！</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI分析とロードマップ -->
+  <div class="analysis-section">
+    <h2>AIによる分析結果と、風会議への「提言の種」</h2>
+    <p style="text-align: center;">上記のような多数のテーブルから集まった音声をAIで構造化・分析した結果、以下の3つの重要なフェーズが浮き彫りになりました。</p>
+    
+    <div class="analysis-grid">
+      <div class="analysis-card">
+        <h3 style="color: #ef4444;">1段目：日常の変化と課題</h3>
+        <p>慢性的な人手不足と、それに伴う現場の疲弊。さらに、行政手続きや地域活動に残る「非効率なアナログ業務」が、本来新しい挑戦へ向けるべきリソースを奪っている現状。</p>
+      </div>
+      <div class="analysis-card">
+        <h3 style="color: #10b981;">2段目：地域の強みの抽出</h3>
+        <p>石川県特有の「食」「伝統技術」「自然」といった地域資源のポテンシャルの高さ。SNSやデジタルツールを活用し、世界へ直接発信することで、人を呼び込む成功事例の萌芽。</p>
+      </div>
+      <div class="analysis-card">
+        <h3 style="color: #3b82f6;">3段目：一緒に行える変革（提言）</h3>
+        <p>単独企業での限界を突破するための「デジタルによる横の繋がり（面展開）」。若者が失敗を恐れず挑戦できる「実証実験特区（シェアスペース等）」の創出と、それに伴う行政の規制緩和の要求。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 意見集約フォームへの誘導 -->
+  <div class="cta-section">
+    <h2>次は、あなたの「オラが村」の声を聴かせてください</h2>
+    <p style="font-size: 1.1rem; margin-top: 20px;">
+      本日この場に参加できなかった石川県連メンバーの皆様へ。<br>
+      11月の風会議で県庁を動かすためには、一部の意見ではなく、400名全員のリアルな声が必要です。<br>
+      あなたの街の課題、不満、そして未来へのアイデアを、以下のフォームからぜひ教えてください。<br>
+      集まった声は再びAIで統合し、オール石川の強力な「提言の種」としてぶつけます。
+    </p>
+    <a href="https://forms.gle/XvqMg86u431mh4UZ6" target="_blank" class="cta-button">意見集約フォームへ入力する</a>
+  </div>
+
+</div>
+
+</body>
+</html>
