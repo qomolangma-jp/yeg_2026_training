@@ -134,13 +134,14 @@
         /* 同一ディレクトリ内の画像を表示するためのスタイル */
         .manual-img {
             display: block;
-            max-width: 600px;
+            max-width: 1000px;
             width: 100%;
             height: auto;
             margin: 20px 0 8px 0;
             border: 1px solid #dadce0;
             border-radius: 6px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            cursor: zoom-in;
         }
 
         /* 注意ボックス装飾 */
@@ -155,6 +156,78 @@
 
         .note-box strong {
             color: #b78103;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-top: 12px;
+            border: 1px solid transparent;
+            background-color: #1a73e8;
+            color: #fff;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #1558b0;
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.82);
+            z-index: 9999;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: min(1300px, 94vw);
+            max-height: 88vh;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 42px;
+            height: 42px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.28);
         }
 
         iframe {
@@ -335,7 +408,8 @@
                 <h2>GitHubアカウントの作成</h2>
                 <ul class="steps">
                     <li>
-                        GitHubの公式サイトを開き、「Sign up（サインアップ）」をクリックします。
+                        GitHubの公式サイトを開き、「Sign up（サインアップ）」をクリックします。<br>
+                        <a class="btn btn-primary" href="https://github.co.jp/" target="_blank">GitHub公式サイト</a><br>
                         <img src="001.png" alt="サインアップボタン位置" class="manual-img">
                     </li>
                     <li>
@@ -464,7 +538,7 @@
                     <li>
                         表示されたURLを取得し、以下のスプレッドシートに入力して共有しましょう。
                         <br>
-                        <a href="https://docs.google.com/spreadsheets/d/1ivvpDpg0U9E3xhaFuI-w3X7FSjAQOh_ng7JjNkqCDEw/edit?usp=drive_link" target="_blank">スプレッドシートはこちら</a>
+                        <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1ivvpDpg0U9E3xhaFuI-w3X7FSjAQOh_ng7JjNkqCDEw/edit?usp=drive_link" target="_blank">スプレッドシートはこちら</a>
                     </li>
                 </ul>
             </section>
@@ -494,10 +568,51 @@
         </div>
     </main>
 
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="画像拡大表示">
+        <button class="lightbox-close" type="button" aria-label="閉じる">&times;</button>
+        <img id="lightboxImage" src="about:blank" alt="">
+    </div>
+
     <script>
         const menuItems = document.querySelectorAll('.menu-item');
         const chapters = document.querySelectorAll('.chapter-content');
         const contentArea = document.querySelector('.content');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const manualImages = document.querySelectorAll('.manual-img');
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('lightbox-open');
+            lightboxImage.src = 'about:blank';
+            lightboxImage.alt = '';
+        };
+
+        manualImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt || '拡大画像';
+                lightbox.classList.add('active');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('lightbox-open');
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
 
         menuItems.forEach(item => {
             item.addEventListener('click', () => {
