@@ -3,163 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>喜怒哀楽トークシステム</title>
+    <title>豊聡耳ワーク・質問進行システム</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        /* 背景色変更のプレビューを滑らかにするアニメーション */
-        .transition-bg {
-            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        /* 背景色・文字色・ボタンの切り替えを滑らかにするアニメーション */
+        .transition-all-custom {
+            transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        color 0.5s ease, 
+                        border-color 0.5s ease;
         }
     </style>
 </head>
-<body class="transition-bg bg-slate-950 text-white min-h-screen flex flex-col justify-between items-center p-6 font-sans overflow-hidden">
+<body class="transition-all-custom bg-slate-950 text-white min-h-screen flex flex-col justify-between items-center p-6 font-sans overflow-hidden">
 
-    <header class="text-center pt-4 opacity-60">
-        <h1 class="text-sm tracking-widest font-bold uppercase">Emotion Talk Session</h1>
+    <header id="main-header" class="text-center pt-4 w-full max-w-4xl flex justify-between items-center border-b border-white/10 pb-4 transition-all-custom opacity-90">
+        <div id="progress-tag" class="text-sm tracking-widest font-bold uppercase py-1 px-3 rounded-md transition-all-custom">
+            LOADING...
+        </div>
+        <div class="text-xs tracking-wider font-bold opacity-60">
+            HOUYOMIMI WORK SYSTEM
+        </div>
     </header>
 
     <main class="flex-1 flex flex-col justify-center items-center w-full max-w-4xl text-center px-4">
-        <div id="emotion-badge" class="hidden text-3xl md:text-5xl font-extrabold tracking-wider px-8 py-3 rounded-full bg-white/20 backdrop-blur-md mb-8 shadow-lg animate-bounce">
-            --
-        </div>
         
-        <div id="theme-text" class="text-2xl md:text-5xl lg:text-6xl font-black leading-snug md:leading-relaxed drop-shadow-md max-w-3xl min-h-[150px] flex items-center justify-center">
-            ボタンを押すと、スプレッドシートからお題がランダムに飛び出します！
+        <div id="question-area" class="hidden w-full flex flex-col items-center">
+            <div id="category-tag" class="text-2xl md:text-4xl lg:text-5xl font-black mb-8 tracking-wide drop-shadow transition-colors duration-500">
+                --
+            </div>
+            <div id="theme-text" class="whitespace-pre-wrap text-2xl md:text-4xl lg:text-5xl font-black leading-snug md:leading-relaxed drop-shadow-lg max-w-3xl min-h-[180px] flex items-center justify-center">
+                データを読み込んでいます...
+            </div>
         </div>
+
+        <div id="target-selection-area" class="hidden w-full flex flex-col items-center max-w-xl">
+            <h2 class="text-3xl md:text-5xl font-black mb-3 tracking-wider text-amber-400 drop-shadow">ターゲット（卓）の選択</h2>
+            <p class="text-sm opacity-80 mb-8">次の第5問は、選択した卓固有の質問に切り替わります。</p>
+            
+            <div class="w-full bg-white/10 border border-white/20 p-6 rounded-2xl shadow-2xl backdrop-blur-md">
+                <label for="target-select" class="block text-left text-xs font-bold uppercase tracking-wider opacity-60 mb-2">担当の卓を選択してください</label>
+                <select id="target-select" class="w-full bg-slate-900 text-white text-lg font-bold py-4 px-4 rounded-xl border border-white/20 focus:outline-none focus:border-amber-400 cursor-pointer shadow-inner">
+                    </select>
+                <button id="confirm-target-btn" class="w-full mt-6 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xl py-4 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer hover:scale-[1.02] active:scale-[0.98]">
+                    この卓の質問へ進む
+                </button>
+            </div>
+        </div>
+
+        <div id="finish-area" class="hidden w-full flex flex-col items-center">
+            <div class="text-7xl md:text-9xl mb-6 animate-bounce">🎉</div>
+            <h2 class="text-5xl md:text-7xl font-black tracking-wider drop-shadow-lg">
+                お疲れさまでした！
+            </h2>
+            <p class="text-md md:text-xl opacity-90 mt-6 font-bold">すべての質問が終了しました。活バツなご議論ありがとうございました。</p>
+        </div>
+
     </main>
 
     <footer class="w-full max-w-md text-center pb-12 px-4 z-10">
-        <button id="draw-btn" disabled
-            class="w-full bg-white text-slate-950 font-black text-xl md:text-2xl py-5 px-8 rounded-2xl shadow-2xl hover:bg-slate-100 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
-            データを読み込み中...
+        <button id="action-btn" disabled
+            class="w-full font-black text-xl md:text-2xl py-5 px-8 rounded-2xl shadow-2xl transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-95">
+            読み込み中...
         </button>
-        <p id="status-message" class="text-xs mt-3 opacity-50"></p>
+        <p id="status-message" class="text-xs mt-3 opacity-60 font-medium"></p>
     </footer>
 
     <script>
         // ==========================================
         // 【設定】ここにスプレッドシートのCSV URLを入力してください
         // ==========================================
-        const SPREADSHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQsW-zaAFEPl48lcRUR45SIpH9yZnTWQsumiQ1CCGnuTNoosYKDfIgtzY_BtfvPR_VbmyXAdJZVbaux/pub?gid=0&single=true&output=csv'; 
+        const SPREADSHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQrpzLdOP0esfH15T2dh8dOtqTlre2pRcGGY9IGuYdoDb46KKz5a7HlBpC6fHLGqHX3RLfd1EH4qMq1/pub?gid=258575478&single=true&output=csv';
 
-        // 感情ごとのデザイン定義（喜＝緑、怒＝赤、哀＝青、楽＝黄）
-        const EMOTION_THEMES = {
-            '喜': { bg: 'bg-emerald-600', text: 'text-white' },
-            '怒': { bg: 'bg-rose-600', text: 'text-white' },
-            '哀': { bg: 'bg-indigo-700', text: 'text-white' },
-            '楽': { bg: 'bg-amber-500', text: 'text-slate-950' }, // 黄色は視認性確保のため文字を黒っぽく
-            '初期': { bg: 'bg-slate-950', text: 'text-white' }
+        // 初期サンプルのような圧倒的ビビッドカラーパレット
+        const STEP_THEMES = {
+            1: { 
+                bg: 'bg-sky-600', 
+                text: 'text-white', 
+                badge: 'bg-white/20 text-white',
+                btn: 'bg-slate-950 text-white hover:bg-slate-900 border border-white/10' 
+            }, 
+            2: { 
+                bg: 'bg-emerald-600', 
+                text: 'text-white', 
+                badge: 'bg-white/20 text-white',
+                btn: 'bg-slate-950 text-white hover:bg-slate-900 border border-white/10' 
+            }, 
+            3: { 
+                bg: 'bg-indigo-600', 
+                text: 'text-white', 
+                badge: 'bg-white/20 text-white',
+                btn: 'bg-slate-950 text-white hover:bg-slate-900 border border-white/10' 
+            }, 
+            4: { 
+                bg: 'bg-rose-600', 
+                text: 'text-white', 
+                badge: 'bg-white/20 text-white',
+                btn: 'bg-slate-950 text-white hover:bg-slate-900 border border-white/10' 
+            }, 
+            'select': { 
+                bg: 'bg-slate-950', 
+                text: 'text-white', 
+                badge: 'bg-amber-500/20 text-amber-400 border border-amber-500/30',
+                btn: 'hidden' 
+            }, 
+            5: { 
+                bg: 'bg-amber-500', 
+                text: 'text-slate-950', 
+                badge: 'bg-black/10 text-slate-950 font-black',
+                btn: 'bg-slate-950 text-white hover:bg-slate-900' 
+            }, 
+            'finish': { 
+                bg: 'bg-teal-600', 
+                text: 'text-white', 
+                badge: 'bg-white/20 text-white',
+                btn: 'hidden' 
+            } 
         };
 
-        let loadedThemes = []; // 読み込まれたお題データ
+        // 状態管理変数
+        let commonQuestions = []; 
+        let targetQuestions = {};  
+        let currentStep = 1;      
+        let selectedTarget = "";  
 
-        // 要素の取得
-        const emotionBadge = document.getElementById('emotion-badge');
-        const themeText = document.getElementById('theme-text');
-        const drawBtn = document.getElementById('draw-btn');
-        const statusMessage = document.getElementById('status-message');
+        // DOM要素の取得
         const body = document.body;
+        const mainHeader = document.getElementById('main-header');
+        const progressTag = document.getElementById('progress-tag');
+        const categoryTag = document.getElementById('category-tag');
+        const themeText = document.getElementById('theme-text');
+        const actionBtn = document.getElementById('action-btn');
+        const statusMessage = document.getElementById('status-message');
+        
+        const questionArea = document.getElementById('question-area');
+        const targetSelectionArea = document.getElementById('target-selection-area');
+        const finishArea = document.getElementById('finish-area');
+        const targetSelect = document.getElementById('target-select');
+        const confirmTargetBtn = document.getElementById('confirm-target-btn');
 
-        // ページ読み込み時にデータを非同期取得
+        // ページ読み込み時の処理
         window.addEventListener('DOMContentLoaded', async () => {
             if (SPREADSHEET_CSV_URL === 'YOUR_SPREADSHEET_CSV_URL_HERE') {
-                themeText.innerHTML = '<span class="text-red-400 text-xl">【設定エラー】<br>コード内の「SPREADSHEET_CSV_URL」に<br>スプレッドシートのCSV URLを設定してください。</span>';
-                drawBtn.innerText = '設定を確認してください';
+                showError('【設定エラー】<br>コード内の「SPREADSHEET_CSV_URL」に<br>スプレッドシートのCSV URLを設定してください。');
                 return;
             }
 
             try {
-                statusMessage.innerText = 'スプレッドシートからデータを同期中...';
+                statusMessage.innerText = 'スプレッドシートから質問データを取得中...';
                 const response = await fetch(SPREADSHEET_CSV_URL);
                 if (!response.ok) throw new Error('データの取得に失敗しました');
                 
                 const csvText = await response.text();
-                loadedThemes = parseCSV(csvText);
+                parseAndStructureCSV(csvText);
 
-                if (loadedThemes.length === 0) {
-                    throw new Error('有効なデータが見つかりませんでした');
-                }
-
-                // ボタンを利用可能にする
-                drawBtn.innerText = 'お題を引く！';
-                drawBtn.removeAttribute('disabled');
-                statusMessage.innerText = `準備完了！（現在のお題数: ${loadedThemes.length}件）`;
+                // 初期画面（第1問）の表示
+                initSystem();
 
             } catch (error) {
                 console.error(error);
-                themeText.innerHTML = `<span class="text-red-400 text-xl">通信エラーが発生しました。<br>スプレッドシートの「ウェブに公開」設定や<br>URLが正しいか確認してください。</span>`;
-                drawBtn.innerText = '読み込み失敗';
-                statusMessage.innerText = error.message;
+                showError(`通信エラーが発生しました。<br><span class="text-sm opacity-60">${error.message}</span>`);
             }
         });
 
-        // ボタンが押された時の処理
-        drawBtn.addEventListener('click', () => {
-            if (loadedThemes.length === 0) return;
+        // セル内改行（ダブルクォーテーションで囲まれた改行）に対応した堅牢なCSVパース関数
+        function parseAndStructureCSV(text) {
+            const rows = [];
+            let currentRow = [];
+            let currentField = '';
+            let inQuotes = false;
 
-            // ランダムに1行抽出
-            const randomIndex = Math.floor(Math.random() * loadedThemes.length);
-            const selected = loadedThemes[randomIndex];
-
-            // 画面表示の更新
-            emotionBadge.innerText = selected.emotion;
-            emotionBadge.classList.remove('hidden');
-            themeText.innerText = selected.text;
-
-            // 背景色とテーマのダイナミック変更
-            const theme = EMOTION_THEMES[selected.emotion] || EMOTION_THEMES['初期'];
-            
-            // 背景色クラスをリセットして再適用
-            body.className = 'transition-bg min-h-screen flex flex-col justify-between items-center p-6 font-sans overflow-hidden ' + theme.bg;
-            
-            // 感情バッジ内の文字色調整（「楽」の時だけ文字を暗くする等の対応）
-            if (selected.emotion === '楽') {
-                emotionBadge.className = 'text-3xl md:text-5xl font-extrabold tracking-wider px-8 py-3 rounded-full bg-slate-950/10 backdrop-blur-md mb-8 shadow-lg animate-bounce text-slate-950';
-            } else {
-                emotionBadge.className = 'text-3xl md:text-5xl font-extrabold tracking-wider px-8 py-3 rounded-full bg-white/20 backdrop-blur-md mb-8 shadow-lg animate-bounce text-white';
-            }
-        });
-
-        // カンマやお題の中のクォーテーションを考慮したCSVパース関数
-        function parseCSV(text) {
-            const lines = text.split(/\r?\n/);
-            const results = [];
-
-            // 1行目はヘッダー（Sort, 感情, お題）なのでi=1から開始
-            for (let i = 1; i < lines.length; i++) {
-                const line = lines[i].trim();
-                if (!line) continue;
-
-                // 簡易的なCSVクォート対応パース
-                const row = [];
-                let current = '';
-                let inQuotes = false;
-
-                for (let j = 0; j < line.length; j++) {
-                    const char = line[j];
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                
+                if (inQuotes) {
                     if (char === '"') {
-                        inQuotes = !inQuotes;
-                    } else if (char === ',' && !inQuotes) {
-                        row.push(current);
-                        current = '';
+                        if (text[i + 1] === '"') {
+                            currentField += '"';
+                            i++; // エスケープされたクォートをスキップ
+                        } else {
+                            inQuotes = false; // 閉じクォート
+                        }
                     } else {
-                        current += char;
+                        currentField += char; // クォート内の文字（改行もそのまま保持）
+                    }
+                } else {
+                    if (char === '"') {
+                        inQuotes = true;
+                    } else if (char === ',') {
+                        currentRow.push(currentField.trim());
+                        currentField = '';
+                    } else if (char === '\r' || char === '\n') {
+                        if (char === '\r' && text[i + 1] === '\n') {
+                            i++;
+                        }
+                        currentRow.push(currentField.trim());
+                        if (currentRow.some(val => val !== '')) {
+                            rows.push(currentRow);
+                        }
+                        currentRow = [];
+                        currentField = '';
+                    } else {
+                        currentField += char;
                     }
                 }
-                row.push(current);
-
-                // 各要素の不要なダブルクォーテーションをトリム
-                const cleanRow = row.map(val => val.replace(/^"|"$/g, '').trim());
-
-                // B列（感情）とC列（お題）が存在することを確認
-                if (cleanRow.length >= 3) {
-                    results.push({
-                        emotion: cleanRow[1], // B列：感情
-                        text: cleanRow[2]     // C列：お題
-                    });
+            }
+            // 残りのデータを追加
+            if (currentField || currentRow.length > 0) {
+                currentRow.push(currentField.trim());
+                if (currentRow.some(val => val !== '')) {
+                    rows.push(currentRow);
                 }
             }
-            return results;
+
+            // 配列からデータを構造化オブジェクトへ変換
+            for (let i = 1; i < rows.length; i++) {
+                const cleanRow = rows[i];
+                if (cleanRow.length >= 4) {
+                    // セル内改行、または手動で入力された「\n」という文字列の両方を改行コードに置換
+                    const questionText = cleanRow[3].replace(/\\n/g, '\n');
+
+                    const qData = {
+                        id: parseInt(cleanRow[0]),
+                        category: cleanRow[1],
+                        target: cleanRow[2],
+                        question: questionText
+                    };
+
+                    if (qData.target.toLowerCase() === 'all') {
+                        commonQuestions.push(qData);
+                    } else {
+                        if (!targetQuestions[qData.target]) {
+                            targetQuestions[qData.target] = [];
+                        }
+                        targetQuestions[qData.target].push(qData);
+                    }
+                }
+            }
+
+            // ID順にソート
+            commonQuestions.sort((a, b) => a.id - b.id);
+        }
+
+        // 背景色とテーマ全体のカラー更新関数
+        function changeTheme(stepKey) {
+            const theme = STEP_THEMES[stepKey];
+            if (!theme) return;
+            
+            body.className = `transition-all-custom ${theme.bg} ${theme.text} min-h-screen flex flex-col justify-between items-center p-6 font-sans overflow-hidden`;
+            
+            if (stepKey === 5) {
+                mainHeader.classList.replace('border-white/10', 'border-black/10');
+            } else {
+                mainHeader.classList.replace('border-black/10', 'border-white/10');
+            }
+
+            progressTag.className = `text-sm tracking-widest font-bold uppercase py-1 px-3 rounded-md transition-all-custom ${theme.badge}`;
+            actionBtn.className = `w-full font-black text-xl md:text-2xl py-5 px-8 rounded-2xl shadow-2xl transition-all-custom cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-95 ${theme.btn}`;
+        }
+
+        // システムの初期化・開始
+        function initSystem() {
+            if (commonQuestions.length < 4) {
+                showError('共通質問（target: all）が4問以上見つかりません。CSVを確認してください。');
+                return;
+            }
+
+            targetSelect.innerHTML = '';
+            Object.keys(targetQuestions)
+                .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+                .forEach(target => {
+                    const option = document.createElement('option');
+                    option.value = target;
+                    option.innerText = `${target}卓`; 
+                    targetSelect.appendChild(option);
+                });
+
+            currentStep = 1;
+            renderQuestion();
+            
+            actionBtn.removeAttribute('disabled');
+            statusMessage.innerText = 'システム準備完了';
+        }
+
+        // 質問画面の描画
+        function renderQuestion() {
+            questionArea.classList.remove('hidden');
+            targetSelectionArea.classList.add('hidden');
+            finishArea.classList.add('hidden');
+
+            progressTag.innerText = `第 ${currentStep} 問 / 全 5 問`;
+            changeTheme(currentStep); 
+
+            let currentQ;
+            if (currentStep <= 4) {
+                currentQ = commonQuestions[currentStep - 1];
+                actionBtn.innerText = '次の質問へ';
+            } else {
+                const qs = targetQuestions[selectedTarget];
+                currentQ = qs ? qs[0] : { category: '不明', question: '該当する質問がありません。' };
+                actionBtn.innerText = 'ワークを終了する';
+            }
+
+            categoryTag.innerText = currentQ.category;
+            themeText.innerText = currentQ.question; // innerTextが改行をそのまま再現します
+        }
+
+        // ターゲット選択画面の描画
+        function renderTargetSelection() {
+            questionArea.classList.add('hidden');
+            targetSelectionArea.classList.remove('hidden');
+            finishArea.classList.add('hidden');
+
+            progressTag.innerText = `分岐ポイント`;
+            changeTheme('select'); 
+        }
+
+        // 終了画面の描画
+        function renderFinish() {
+            questionArea.classList.add('hidden');
+            targetSelectionArea.classList.add('hidden');
+            finishArea.classList.remove('hidden');
+
+            progressTag.innerText = `COMPLETE`;
+            changeTheme('finish'); 
+            statusMessage.innerText = '';
+        }
+
+        // フッターの「次の質問へ / 終了する」ボタンが押されたとき
+        actionBtn.addEventListener('click', () => {
+            if (currentStep < 4) {
+                currentStep++;
+                renderQuestion();
+            } else if (currentStep === 4) {
+                renderTargetSelection();
+            } else if (currentStep === 5) {
+                renderFinish();
+            }
+        });
+
+        // ターゲット決定ボタンが押されたとき
+        confirmTargetBtn.addEventListener('click', () => {
+            selectedTarget = targetSelect.value;
+            if (!selectedTarget) return;
+
+            currentStep = 5; 
+            renderQuestion();
+        });
+
+        // エラー表示用共通関数
+        function showError(msg) {
+            questionArea.classList.remove('hidden');
+            targetSelectionArea.classList.add('hidden');
+            finishArea.classList.add('hidden');
+            themeText.innerHTML = `<span class="text-red-400 text-xl font-bold">${msg}</span>`;
+            actionBtn.innerText = 'エラー発生';
+            actionBtn.setAttribute('disabled', 'true');
+            statusMessage.innerText = '';
+            progressTag.innerText = 'ERROR';
+            categoryTag.innerText = 'エラー';
+            categoryTag.className = 'text-2xl md:text-4xl lg:text-5xl font-black mb-8 tracking-wide text-red-500';
         }
     </script>
 </body>
