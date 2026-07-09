@@ -181,6 +181,39 @@
             transform: translateY(0);
         }
 
+        .copy-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 2px 10px;
+            border: 1px solid #c6dafc;
+            border-radius: 999px;
+            background: #eef4ff;
+            color: #174ea6;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+            cursor: pointer;
+            user-select: all;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .copy-text:hover {
+            background: #e4efff;
+            border-color: #9dbdfb;
+        }
+
+        .copy-text:focus-visible {
+            outline: 2px solid #1a73e8;
+            outline-offset: 2px;
+        }
+
+        .copy-text.copied {
+            background: #e8f5e9;
+            border-color: #66bb6a;
+            color: #1b5e20;
+        }
+
         body.lightbox-open {
             overflow: hidden;
         }
@@ -497,7 +530,7 @@
                         <img src="012.png" alt="Create new file位置" class="manual-img">
                     </li>
                     <li>
-                        ファイル名は必ず index.html と入力してください。
+                        ファイル名は必ず <span class="copy-text" role="button" tabindex="0" data-copy-text="index.html" aria-label="index.htmlをコピー">index.html</span> と入力してください。
                         <img src="013.png" alt="ファイル名入力方法" class="manual-img">
                     </li>
                     <li>
@@ -581,6 +614,7 @@
         const lightboxImage = document.getElementById('lightboxImage');
         const lightboxClose = document.querySelector('.lightbox-close');
         const manualImages = document.querySelectorAll('.manual-img');
+        const copyTexts = document.querySelectorAll('.copy-text');
 
         const closeLightbox = () => {
             lightbox.classList.remove('active');
@@ -612,6 +646,58 @@
             if (event.key === 'Escape' && lightbox.classList.contains('active')) {
                 closeLightbox();
             }
+        });
+
+        const fallbackCopyText = (text) => {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        };
+
+        const copyToClipboard = async (text) => {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                return;
+            }
+            fallbackCopyText(text);
+        };
+
+        copyTexts.forEach((element) => {
+            const rawText = element.getAttribute('data-copy-text') || element.textContent.trim();
+            const copyText = rawText.trim();
+
+            const showCopiedState = () => {
+                const previousLabel = element.textContent;
+                element.classList.add('copied');
+                element.textContent = 'コピーしました';
+                window.setTimeout(() => {
+                    element.classList.remove('copied');
+                    element.textContent = previousLabel;
+                }, 1200);
+            };
+
+            const runCopy = async () => {
+                try {
+                    await copyToClipboard(copyText);
+                    showCopiedState();
+                } catch (error) {
+                    console.error('コピーに失敗しました:', error);
+                }
+            };
+
+            element.addEventListener('click', runCopy);
+            element.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    runCopy();
+                }
+            });
         });
 
         menuItems.forEach(item => {
