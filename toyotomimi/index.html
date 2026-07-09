@@ -38,7 +38,7 @@
 
         <div id="target-selection-area" class="hidden w-full flex flex-col items-center max-w-xl">
             <h2 class="text-3xl md:text-5xl font-black mb-3 tracking-wider text-amber-400 drop-shadow">ターゲット（卓）の選択</h2>
-            <p class="text-sm opacity-80 mb-8">次の第5問は、選択した卓固有の質問に切り替わります。</p>
+            <p class="text-sm opacity-80 mb-8">次の第4問は、選択した卓固有の質問に切り替わります。</p>
             
             <div class="w-full bg-white/10 border border-white/20 p-6 rounded-2xl shadow-2xl backdrop-blur-md">
                 <label for="target-select" class="block text-left text-xs font-bold uppercase tracking-wider opacity-60 mb-2">担当の卓を選択してください</label>
@@ -263,8 +263,8 @@
 
         // システムの初期化・開始
         function initSystem() {
-            if (commonQuestions.length < 4) {
-                showError('共通質問（target: all）が4問以上見つかりません。CSVを確認してください。');
+            if (commonQuestions.length < 3) {
+                showError('共通質問（target: all）が3問以上見つかりません。CSVを確認してください。');
                 return;
             }
 
@@ -291,11 +291,11 @@
             targetSelectionArea.classList.add('hidden');
             finishArea.classList.add('hidden');
 
-            progressTag.innerText = `第 ${currentStep} 問 / 全 5 問`;
+            progressTag.innerText = `第 ${currentStep} 問 / 全 4 問`;
             changeTheme(currentStep); 
 
             let currentQ;
-            if (currentStep <= 4) {
+            if (currentStep <= 3) {
                 currentQ = commonQuestions[currentStep - 1];
                 actionBtn.innerText = '次の質問へ';
             } else {
@@ -331,12 +331,12 @@
 
         // フッターの「次の質問へ / 終了する」ボタンが押されたとき
         actionBtn.addEventListener('click', () => {
-            if (currentStep < 4) {
+            if (currentStep < 3) {
                 currentStep++;
                 renderQuestion();
-            } else if (currentStep === 4) {
+            } else if (currentStep === 3) {
                 renderTargetSelection();
-            } else if (currentStep === 5) {
+            } else if (currentStep === 4) {
                 renderFinish();
             }
         });
@@ -346,7 +346,7 @@
             selectedTarget = targetSelect.value;
             if (!selectedTarget) return;
 
-            currentStep = 5; 
+            currentStep = 4; 
             renderQuestion();
         });
 
